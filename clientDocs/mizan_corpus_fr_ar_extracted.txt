@@ -1,0 +1,258 @@
+=== mizan_corpus_fr_ar.pdf (5 pages) ===
+
+--- PAGE 1 ---
+Version : projet de travail v0.1 — 30 septembre 2026
+Statut : transmissible pour la préparation du corpus ; aucune règle de paie autorisée en
+production sur la seule foi de ce document.
+Les identifiants L1–L18 désignent le corpus juridique demandé, mais aucune liste exhaustive
+de leur titre, pièce, statut et contenu n'est fournie ici. Ne pas affecter arbitrairement un texte à
+un numéro Lx. L14 porte des points ouverts sur langues et documents ; L19 est contextuel et
+découplé du calcul. Joindre les addenda originaux 10, 12, 13, 15, 19, 19e, indexer les pièces
+manquantes et relever leurs éventuels conflits. La norme métier retenue privilégie le JO en
+arabe (N1) ; versions françaises et anglaises sont des aides de travail sans substitution à la
+validation N1.
+Texte ou ressource repérée
+Usage envisagé
+Statut de ce dossier
+Loi 90-11 relative aux
+relations de travail
+Cadre des relations de travail
+Citée dans les échanges ; articles et état
+applicable non examinés ici.
+Décret 15-236 du 03/09/2015,
+art. 1, modifiant l'art. 2 du
+décret 94-187
+Répartition de cotisation : 25 %
+employeur, 9 % salarié, 0,5 % fonds des
+œuvres sociales ; total 34,5 %
+JO arabe n°49 localisé, page 9 ; lecture et
+validation expertes de l'article, date d'effet et
+modifications ultérieures à consigner.
+Décret 10-71 du 31/01/2010
+Procédure des abattements de part
+patronale ; art. 2 : délai depuis
+l'affiliation dans l'édition française
+JO français n°9 repéré ; retrouver l'arabe, vérifier
+chaîne des modifications et applicabilité.
+Ordonnance 09-01, art. 106 ;
+décret 07-386
+Fondements cités du dispositif ANEM
+Textes complets, chaîne normative et version
+applicable non validés dans ce dossier.
+Loi 21-16 du 30/12/2021, art.
+31, modifiant l'art. 104 CIDTA
+IRG traitements et salaires
+Édition française consultée ; arabe, consolidation
+et périodes à vérifier.
+CIDTA 2026 (DGI)
+Point de contrôle de la consolidation
+actuelle, sans rétroactivité présumée
+Publication DGI 2026 repérée ; rapprocher chaque
+modification de son JO N1.
+FAQ DGI, rappels et art. 128
+CIDTA
+Piste opérationnelle pour CALC_11
+La DGI décrit un calcul différentiel par mois avec
+droit en vigueur au paiement ; FAQ non
+substitutive au texte N1 ni à validation fiscale.
+La part de 0,5 % est libellée comme à la charge du fonds des œuvres sociales. La décision de
+l'isoler ou non dans une règle comptable CALC_07_B, son assiette et sa traduction dans le coût
+employeur ne sont pas prises.
+MIZAN — Corpus et registre des règles
+Français
+1. Inventaire sans fausse complétude
+
+
+--- PAGE 2 ---
+Pour chaque pièce : identifiant de registre Lx si celui-ci est déjà attribué dans le corpus
+original, numéro et nature du texte, JO édition arabe (numéro, date, page, article), copie
+conservée et empreinte, traductions distinctes, dispositions citées et amendements ou
+abrogations, période de validité métier, date de saisie ou d'invalidation dans le système, champ
+d'application, interprétation signée par juriste, responsable et date de validation, et règles AST
+liées. Inscrire « non vérifié » plutôt qu'un article extrapolé. Un visa ou une citation par un
+décret n'est pas une validation exhaustive du texte visé.
+Cette numérotation reproduit la matrice de 14 lignes proposée dans l'échange, pas 14 formules
+validées. Certaines lignes regroupent plusieurs calculs : vérifier ce regroupement avant gel des
+identifiants.
+ID
+Objet
+Statut
+01
+Salaire de base
+Bloqué : formule absente.
+02
+Absences et déductions
+Bloqué : formule absente.
+03
+Ancienneté / IEG
+Bloqué : barème absent.
+04
+Heures supplémentaires
+Bloqué : règles absentes.
+05
+Assiette SS
+Bloqué : rubriques et assiette non qualifiées.
+06
+SS salariale
+Cible 9 %, sous réserve N1, assiette et arrondi.
+07
+SS patronale droit commun
+Cible 25 %, sous réserve N1, assiette et arrondi.
+08
+SS patronale ANEM
+Cible décision CNAS, chaîne juridique et conditions non closes.
+09
+Assiette imposable IRG
+Bloqué : formule absente.
+10
+IRG courant
+Bloqué : algorithme complet absent.
+11
+IRG rappels
+Bloqué : qualification et algorithme à valider malgré piste DGI.
+12
+Congés et indemnité
+Bloqué : formules absentes.
+13
+STC
+Bloqué : règles absentes.
+14
+Net à payer et coût employeur
+Bloqué : dépendances, formules et traitement FOS absents.
+Fiches provisoires : CALC_06_SS_SAL = ASSIETTE_SS × 0,09 ; CALC_07_SS_PAT = ASSIETTE_SS ×
+0,25 ; CALC_08_SS_PAT_ANEM = ASSIETTE_SS × ANEM_TAUX_EFFECTIF si décision applicable
+validée. ABATTEMENT_PATRONAL_MONTANT = (ASSIETTE_SS × taux patronal de référence
+applicable) − CHARGE_SS_PAT_EFFECTIVE est une formule cible conditionnelle, pas une règle
+activée. Le test illustratif sur 50 000 DZD et 5 % ne valide ni assiette ni arrondis.
+ANEM : conserver décision, période, taux, pièce, saisie ou validation, anomalie
+ANOMALIE_ANEM_DIVERGENCE ; le rôle RESPONSABLE_PAIE_VALIDATEUR peut tracer une vérification et
+une dérogation au seul rejet du catalogue, jamais créer ou forcer un taux. Pour une fin de
+2. Fiche source obligatoire
+3. Matrice de périmètre des 14 postes
+
+
+--- PAGE 3 ---
+relation, enregistrer événement et justificatifs et créer une alerte conservatoire ; ni pénalité ni
+remboursement automatique avant notification CNAS saisie.
+IRG : la LF 2022 modifie l'art. 104 ; la FAQ DGI apporte une piste spécifique au calcul des rappels
+sous l'art. 128, sans pour autant résoudre les assiettes, arrondis, versions temporelles et cas
+particuliers. Aucun algorithme IRG ne peut être livré à partir du seul tableau synthétique.
+عمل مسودة :اإلصدار v0.1 — 30 2026 سبتمبر
+بيئة في األجور لحساب قاعدة أي بتفعيل ُيسمح ال القانوني؛ المتن إعداد أجل من للتسليم قابل :الحالة Production
+وحده المستند هذا إلى استنا ًدا.
+تشير L1–L18 .ومحتوياتها وح التها ومستنداتها بعناوينها شاملة قائمة هنا توجد ال لكن ،المطلوب القانوني المتن إلى
+رقم إلى ًطا
+اعتبا نص َسب
+ُين ال Lx. يخص L14 و والمستندات؛ اللغات حول مفتوحة مسائلL19 عن ومنفصل سياقي
+19و 19و 15و 13و 12و 10 األصلية المالحق ُتر َفق .الحسابe، تعارضاتها و ُتس ّجل المفقودة المستندات و ُتفهرس
+مرجع ًيا مصد ًرا بالعربية الرسمية الجريدة طبعة المق َّررة المهنية القاعدة تعتمد .المحتملة N1الفرنسية والنسخ ؛
+اعتماد محل تحل ال عمل وسائل واإلنجليزية N1.
+مبدئ ًيا المحدد المورد أو النص
+المقصود الستخدام
+الملف هذا في وضعه
+العمل عالقات بشأن 11-90 القانون
+العمل لعالقات العام اإلطار
+النسخة وال مواده ُتفحص لم المحادثات؛ في ورد
+هنا منه المنطبقة.
+المؤرخ 236-15 التنفيذي المرسوم
+المع ّدل ،األولى المادة ،03/09/2015
+187-94 المرسوم من 2 للمادة
+،العمل صاحب %25 :الشتراك توزيع
+الخدمات صندوق %0.5 ،العامل %9
+34.5 والمجموع الجتماعية؛%
+الصفحة ،بالعربية الرسمية الجريدة من 49 العدد ُحدد
+وتاريخ ،مختص من واعتمادها المادة قراءة وتبقى ؛9
+تسجيل إلى بحاجة ،الالحقة والتعديالت السريان.
+31/01/2010 المؤرخ 71-10 المرسوم
+العمل؛ صاحب حصة تخفيض إجراءات
+تاريخ من األجل يبدأ :2 المادة
+الفرنسية الطبعة وفق النتساب
+يجب بالفرنسية؛ الرسمية الجريدة من 9 العدد ُحدد
+التعديالت سلسلة وفحص العربية على العثور
+و النطباق.
+والمرسوم ؛106 المادة ،01-09 األمر
+386-07لنظام إليها المشار األسس ANEMأو القانونية سلسلتها أو الكاملة النصوص ُتعتمد لم
+الملف هذا ضمن المنطبقة نسختها.
+،30/12/2021 المؤرخ 16-21 القانون
+من 104 للمادة المع ِّدلة ،31 المادة
+CIDTA
+IRG والمرتبات األجور على
+العربية فحص ويجب الفرنسية؛ النسخة مراجعة تمت
+والفترات المو ّحد والنص.
+CIDTA 2026 من المنشور DGI
+من ،الحالي للتجميع مراقبة نقطة
+الرجعي األثر افتراض دون
+مورد ُنشر DGI بنصه تعديل كل ربط يجب ؛2026 لعام
+N1 الرسمية الجريدة من.
+FAQ عن الصادرة DGI بشأن
+من 128 والمادة المتأخرة المستحقات
+CIDTA
+للقاعدة عملي بحث مسار CALC_11
+تصف DGI الحق مع الشهر بحسب تفاضل ًيا حسا ًبا
+الدفع؛ عند الساري FAQ النص محل تحل ال N1 أو
+ضريبي مختص اعتماد.
+محاسبية قاعدة في فصلها عدم أو فصلها بشأن قرار ُيتخذ ولم .الجتماعية الخدمات صندوق إلى %0.5 حصة ُتسند
+CALC_07_B، العمل صاحب تكلفة على انعكاسها أو بها الخاص الوعاء بشأن وال.
+العربية
+1. الكتمال ادعاء دون من الجرد
+
+
+--- PAGE 4 ---
+السجل مع ّرف :مستند لكل Lx من العربي والعدد ،وطبيعته النص ورقم ،المعتمد المتن في لأص اً ًصا
+مخص كان إذا
+و محفوظة ونسخة ،ومادته وصفحته وتاريخه الرسمية الجريدةHash، المذكورة واألحكام ،منفصلة وترجمات
+وفترة ،واإللغاءات والتعديالت Valid Time، وفق النظام في إبطاله أو إدخاله وتاريخ Transaction Time، ونطاق
+قواعد وروابط ،وتاريخه العتماد ومسؤول ،مختص قانوني من مو ّقع وتفسير ،النطباق AST. ُيتحقق لم« عبارة ُتكتب
+النص ذلك من الشامل التحقق مرسوم ديباجة في نص إلى اإلشارة تعادل وال .مادة استنتاج بدل »منه.
+بعض تجمع .معتمدة صيغة عشرة أربع ال ،المحادثة في المقترحة عشر األربعة األسطر مصفوفة األرقام هذه تكرر
+المع ّرفات تثبيت قبل الجمع هذا من التحقق ويجب متعددة؛ حسابات األسطر.
+IDالموضوع
+الحالة
+01األساسي الراتب
+موجودة غير الصيغة :محظور.
+02و القتطاعات الغياب
+موجودة غير الصيغة :محظور.
+03األقدمية / IEGموجود غير السلم :محظور.
+04اإلضافية الساعات
+موجودة غير القواعد :محظور.
+05
+Assiette الجتماعي الضمان اشتراكات
+مؤهلين غير والوعاء البنود :محظور.
+06الجتماعي الضمان من العامل حصة
+رهن ،%9 مستهدفة صيغة N1 و والوعاءRounding policy.
+07العام النظام في العمل صاحب حصة
+رهن ،%25 مستهدفة صيغة N1 و والوعاءRounding policy.
+08نظام في العمل صاحب حصة ANEMقرار تعتمد مستهدفة صيغة CNASمكتملة غير والشروط القانونية السلسلة ؛.
+09
+Assiette لـ الخاضعة IRGموجودة غير الصيغة :محظور.
+10
+IRG الجاري
+موجودة غير الكاملة الخوارزمية :محظور.
+11
+IRG المتأخرة المستحقات
+لدى البحث مسار رغم اعتماد إلى يحتاجان والخوارزمية التأهيل :محظور DGI.
+12عنها والتعويض اإلجازات
+موجودة غير الصيغ :محظور.
+13العالقة نهاية تسوية STCموجودة غير القواعد :محظور.
+14العمل صاحب وتكلفة المستحق المبلغ صافي
+موجودة غير الجتماعية الخدمات صندوق ومعالجة والصيغ التبعيات :محظور.
+مؤقتة بطاقات: CALC_06_SS_SAL = ASSIETTE_SS × 0.09؛CALC_07_SS_PAT = ASSIETTE_SS × 0.25؛
+CALC_08_SS_PAT_ANEM = ASSIETTE_SS × ANEM_TAUX_EFFECTIF .المنطبق القرار اع ُتمد إذا
+وABATTEMENT_PATRONAL_MONTANT = (ASSIETTE_SS × taux patronal de référence applicable) −
+CHARGE_SS_PAT_EFFECTIVEيعتمد ال التوضيحي و الختبار .مفعلة قاعدة وليست ،مشروطة مستهدفة صيغة
+التقريب قواعد أو الوعاء.
+ANEM: والشذوذ منه والتحقق وإدخاله ومستنده ونسبته وفترته بالقرار ُيحتفظANOMALIE_ANEM_DIVERGENCE؛
+لدور ويمكنRESPONSABLE_PAIE_VALIDATEURبرفض الخاص و الستثناء التحقق تسجيل Catalog يجوز وال ،فقط
+و ُتنشأ المؤيدة والمستندات الحدث ُيس َّجل ،العمل عالقة نهاية وعند .فرضها أو نسبة إنشاء له Alert وال تحفظية؛
+إشعار إدخال قبل آل ًيا محسو ًبا استرداد وال غرامة CNAS.
+IRG: وتقدم ؛104 المادة 2022 لسنة المالية قانون ع ّدل FAQ عن الصادرة DGI المستحقات بحساب ًصا
+خا مسا ًرا
+الح الت وال الزمنية اإلصدارات وال التقريب قواعد وال الوعاء يحسم ال ذلك لكن ،128 المادة إلى استنا ًدا المتأخرة
+2. اإللزامية المصدر بطاقة
+3. عشر األربعة البنود نطاق مصفوفة
+
+
+--- PAGE 5 ---
+خوارزمية تسليم يجوز ال .الخاصة IRG وحده موجز جدول إلى استنا ًدا.
+
+

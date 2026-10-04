@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقد تقديم خدمات تطوير برمجي — مشروع منصة ميزان (MIZAN)</title>
+    <!-- Google Fonts: Cairo & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #eff6ff;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --gold: #b45309;
+            --gold-light: #fef3c7;
+            --white: #ffffff;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background-color: #e2e8f0;
+            color: var(--slate-800);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Top Action Bar (hidden when printing) */
+        .top-action-bar {
+            background: linear-gradient(135deg, var(--slate-900) 0%, #1e293b 100%);
+            color: white;
+            padding: 14px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .action-brand span {
+            color: #60a5fa;
+        }
+
+        .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-print:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-view-plan {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-view-plan:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Contract Document Paper */
+        .contract-wrapper {
+            max-width: 900px;
+            margin: 35px auto;
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border: 1px solid #cbd5e1;
+            padding: 55px 65px;
+            position: relative;
+        }
+
+        /* Official Legal Header */
+        .contract-header {
+            text-align: center;
+            border-bottom: 3px double var(--slate-900);
+            padding-bottom: 24px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .contract-emblem {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .republic-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--slate-600);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .contract-main-title {
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--slate-900);
+            margin-bottom: 6px;
+        }
+
+        .contract-subtitle {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .contract-code {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.82rem;
+            color: var(--slate-500);
+            direction: ltr;
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+            background: var(--slate-100);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--slate-200);
+        }
+
+        /* Preamble / Introduction */
+        .preamble {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            font-size: 0.98rem;
+            color: var(--slate-700);
+            text-align: justify;
+        }
+
+        /* Parties Grid */
+        .parties-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 35px;
+        }
+
+        .party-box {
+            border: 1px solid var(--slate-200);
+            border-top: 4px solid var(--primary);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .party-box.dev {
+            border-top-color: #0d9488;
+        }
+
+        .party-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .badge-client { background: var(--primary-light); color: var(--primary); }
+        .badge-dev { background: #f0fdfa; color: #0d9488; }
+
+        .party-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 8px;
+        }
+
+        .party-detail {
+            font-size: 0.92rem;
+            color: var(--slate-700);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .party-detail i {
+            margin-top: 5px;
+            color: var(--slate-500);
+            font-size: 0.85rem;
+        }
+
+        .payment-box {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.88rem;
+        }
+
+        .payment-box h6 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--slate-800);
+            margin-bottom: 4px;
+        }
+
+        .payment-info-line {
+            display: flex;
+            justify-content: space-between;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Outfit', monospace;
+            font-weight: 600;
+            color: var(--slate-900);
+            padding: 2px 0;
+        }
+
+        .payment-info-line span {
+            font-family: 'Cairo', sans-serif;
+            color: var(--slate-600);
+            font-size: 0.82rem;
+        }
+
+        /* Contract Articles */
+        .article {
+            margin-bottom: 26px;
+            page-break-inside: avoid;
+        }
+
+        .article-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--slate-200);
+            padding-bottom: 6px;
+        }
+
+        .article-title span {
+            color: var(--primary);
+        }
+
+        .article-text {
+            font-size: 0.96rem;
+            color: var(--slate-700);
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .article-list {
+            list-style: none;
+            margin: 10px 0;
+            padding-right: 15px;
+        }
+
+        .article-list li {
+            position: relative;
+            padding-right: 20px;
+            margin-bottom: 8px;
+            font-size: 0.94rem;
+            color: var(--slate-700);
+        }
+
+        .article-list li::before {
+            content: '▪';
+            position: absolute;
+            right: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Highlight Alert Box (VPS Responsibilities) */
+        .legal-notice {
+            background: #fffbeb;
+            border-right: 4px solid var(--gold);
+            padding: 12px 18px;
+            border-radius: 4px;
+            margin: 14px 0;
+            font-size: 0.92rem;
+            color: #78350f;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .legal-notice i {
+            margin-top: 4px;
+            font-size: 1.1rem;
+        }
+
+        /* Payments Table */
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 0.92rem;
+        }
+
+        .payment-table th {
+            background: var(--slate-900);
+            color: white;
+            padding: 10px 14px;
+            font-weight: 700;
+            border: 1px solid var(--slate-900);
+            text-align: right;
+        }
+
+        .payment-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--slate-200);
+            color: var(--slate-700);
+        }
+
+        .payment-table tr:nth-child(even) td {
+            background-color: var(--slate-50);
+        }
+
+        .amount-cell {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--slate-900);
+            direction: ltr;
+            text-align: right;
+        }
+
+        /* Signature Section */
+        .signatures-section {
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 2px solid var(--slate-200);
+            page-break-inside: avoid;
+        }
+
+        .signatures-intro {
+            font-size: 0.94rem;
+            color: var(--slate-600);
+            margin-bottom: 25px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .signatures-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .signature-card {
+            border: 2px dashed #94a3b8;
+            border-radius: var(--radius-sm);
+            padding: 22px;
+            background: #fafafa;
+            text-align: center;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .signature-role {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--slate-900);
+        }
+
+        .signature-sub {
+            font-size: 0.9rem;
+            color: var(--slate-600);
+            margin-top: 4px;
+        }
+
+        .lu-mention {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--slate-500);
+            border-top: 1px dotted #cbd5e1;
+            padding-top: 8px;
+        }
+
+        .empty-sign-space {
+            flex-grow: 1;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .sign-date-place {
+            font-size: 0.85rem;
+            color: var(--slate-600);
+            text-align: right;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 8px;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0;
+            }
+
+            .top-action-bar {
+                display: none !important;
+            }
+
+            .contract-wrapper {
+                max-width: 100%;
+                margin: 0;
+                padding: 25px 35px;
+                border: none;
+                box-shadow: none;
+            }
+
+            .article {
+                page-break-inside: avoid;
+            }
+
+            .signatures-section {
+                page-break-inside: avoid;
+            }
+
+            .payment-table th {
+                background: #1e293b !important;
+                color: white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Top Action Bar for PDF Generation -->
+    <div class="top-action-bar">
+        <div class="action-brand">
+            <i class="fa-solid fa-file-signature" style="color: #60a5fa;"></i>
+            وثيقة عقد التطوير البرمجي — <span>مشروع ميزان (MIZAN)</span>
+        </div>
+        <div class="actions-group">
+            <a href="plan_implementation_ar.html" target="_blank" class="btn btn-view-plan">
+                <i class="fa-solid fa-file-lines"></i>
+                معاينة خطة التنفيذ الملحقة
+            </a>
+            <button class="btn btn-print" onclick="window.print()">
+                <i class="fa-solid fa-print"></i>
+                طباعة العقد كملف PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Contract Paper -->
+    <div class="contract-wrapper">
+
+        <header class="contract-header">
+            <div class="contract-code">N° CONTRAT: MZ-2026/01</div>
+            <div class="contract-emblem"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="republic-title">الجمهورية الجزائرية الديمقراطية الشعبية</div>
+            <h1 class="contract-main-title">عقد تقديم خدمات تطوير برمجي</h1>
+            <div class="contract-subtitle">تطوير الوحدة الأولى (Module 1: الرواتب وإدارة الموارد البشرية) لمنصة "ميزان" MIZAN SaaS</div>
+        </header>
+
+        <!-- Preamble -->
+        <div class="preamble">
+            تم الاتفاق والتراضي في هذا اليوم بين الطرفين الموقعين أسفله، وهما بكامل الأهلية القانونية والصفة المعتبرة للتعاقد، على تنفيذ وتطوير النظام البرمجي وفق الشروط والأحكام والبنود الموضحة أدناه:
+        </div>
+
+        <!-- The Parties -->
+        <div class="parties-container">
+            <!-- Client (Party 1) -->
+            <div class="party-box">
+                <span class="party-badge badge-client">الطرف الأول: صاحب المشروع (العميل)</span>
+                <div class="party-name">السيد: قنوني الحسين</div>
+                <div class="party-detail">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span><strong>العنوان والمقر:</strong> بلدية تيغنيف، ولاية معسكر، الجزائر.</span>
+                </div>
+                <div class="party-detail">
+                    <i class="fa-solid fa-user-tag"></i>
+                    <span><strong>الصفة:</strong> المستفيد وصاحب المشروع، ويشار إليه فيما بعد بـ <em>"الطرف الأول"</em> أو <em>"العميل"</em>.</span>
+                </div>
+            </div>
+
+            <!-- Developer (Party 2) -->
+            <div class="party-box dev">
+                <span class="party-badge badge-dev">الطرف الثاني: مطور البرمجيات (مقدم الخدمة)</span>
+                <div class="party-name">السيد: بوخاري سليمان</div>
+                <div class="party-detail">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span><strong>العنوان والمقر:</strong> ولاية وهران، الجزائر.</span>
+                </div>
+                <div class="party-detail">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <span><strong>الصفة:</strong> مهندس ومطور برمجيات مستقل، ويشار إليه بـ <em>"الطرف الثاني"</em> أو <em>"المطور"</em>.</span>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="payment-box">
+                    <h6><i class="fa-solid fa-credit-card"></i> بيانات الحساب لدفع المستحقات:</h6>
+                    <div class="payment-info-line">
+                        <strong>0028093534</strong>
+                        <span>رقم الحساب البريدي (CCP):</span>
+                    </div>
+                    <div class="payment-info-line">
+                        <strong>91</strong>
+                        <span>المفتاح (Clé):</span>
+                    </div>
+                    <div class="payment-info-line">
+                        <strong>00799999002809353491</strong>
+                        <span>رقم التعريف البريدي (RIP):</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Articles -->
+
+        <!-- Article 1 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة الأولى:</span> موضوع العقد ونطاق العمل (Objet du Contrat)</h3>
+            <p class="article-text">
+                بموجب هذا العقد، يُسند الطرف الأول (العميل) إلى الطرف الثاني (المطور)، القائم بقبول ذلك، مهمة تصميم وتطوير وبرمجة <strong>الوحدة الأولى (Module 1: Mizan Paie & Gestion Administrative RH)</strong> من المنصة الرقمية السحابية لإدارة الرواتب وشؤون الموظفين المسماة <strong>"ميزان" (MIZAN SaaS)</strong>.
+            </p>
+            <p class="article-text">
+                يشمل نطاق العمل البرمجي الحصري للوحدة الأولى ما يلي:
+            </p>
+            <ul class="article-list">
+                <li><strong>بناء هيكل قاعدة البيانات السحابية:</strong> بنية متوافقة مع متطلبات النقل اللاحق إلى خوادم خاصة (PostgreSQL / Supabase) مع تفعيل العزل الأمني بين المؤسسات (Row Level Security - RLS).</li>
+                <li><strong>تطوير محرك حساب الرواتب القطعي:</strong> كود برمجي دقيق وخالٍ من الأخطاء لحساب اشتراكات الضمان الاجتماعي (CNAS 9% و 26%)، شرائح الضريبة على الدخل الإجمالي (IRG)، وحساب تسوية نهاية الخدمة (STC).</li>
+                <li><strong>توليد الملفات والمخرجات الرسمية الجزائرية:</strong> توليد كشوف الرواتب الشهرية (Fiches de Paie) بصيغة PDF، والتصريح السنوي بالأجور (DAS)، واستمارة G50، وشهادة العمل والراتب (ATS).</li>
+                <li><strong>توليد ملفات التحويل البنكي الإلكتروني (Virement de Masse):</strong> إنشاء الملفات الرقمية المعتمدة لدى البنوك الجزائرية (مثل BNA, BEA, CPA, AWB أو بريد الجزائر) لرفعها مباشرة على المنصات البنكية دون كتابة يدوية.</li>
+                <li><strong>منظومة المساعد القانوني الذكي (RAG) والـ OCR:</strong> تهيئة وتدريب المساعد القانوني المحلي لقانون العمل الجزائري والاتفاقيات، ومسح العطل الطبية بالـ OCR مع اشتراط التحقق البشري.</li>
+                <li><strong>واجهة الويب التفاعلية (Web SaaS Dashboard):</strong> واجهة متجاوبة بالكامل تدعم اللغة العربية (RTL) والفرنسية لمسؤولي الموارد البشرية والعمال.</li>
+            </ul>
+            <p class="article-text" style="font-size: 0.88rem; color: var(--slate-500);">
+                * ملاحظة: تعتبر وثيقة "خطة التنفيذ التقنية لمشروع ميزان" الملحقة بهذا العقد جزءاً لا يتجزأ منه ومفسرة لتفاصيله الهندسية.
+            </p>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة الثانية:</span> مدة التنفيذ والجدول الزمني (Délai d'Exécution)</h3>
+            <p class="article-text">
+                يلتزم الطرف الثاني (المطور) بإنجاز كامل أعمال الوحدة الأولى موضوع هذا العقد وتسليمها للطرف الأول في مدة زمنية إجمالية قدرها <strong>سبعة (07) أسابيع عمل فعلية</strong>، تسري ابتداءً من تاريخ توقيع هذا العقد واستلام الدفعة الأولى وتسليم العميل للمتطلبات والبيانات اللازمة، وموزعة حسب المراحل التالية:
+            </p>
+            <ul class="article-list">
+                <li><strong>المرحلة 1 (الأسبوع 1):</strong> إعداد بنية قاعدة البيانات، تفعيل العزل الأمني (RLS) وتجهيز النسب القانونية.</li>
+                <li><strong>المرحلة 2 (الأسبوع 2 - 3):</strong> برمجة محرك حساب الرواتب القطعي وتوليد المخرجات الرسمية وملفات الفيرمان.</li>
+                <li><strong>المرحلة 3 (الأسبوع 4 - 5):</strong> بناء وبرمجة الواجهة الأمامية للويب (Frontend Web SaaS) ولوحة التحكم.</li>
+                <li><strong>المرحلة 4 (الأسبوع 6):</strong> دمج وتدريب نظام المساعد القانوني الذكي (RAG) ونظام استخراج النصوص (OCR).</li>
+                <li><strong>المرحلة 5 (الأسبوع 7):</strong> الاختبارات الشاملة، معالجة الملاحظات، والنشر على بيئة الإنتاج والتشغيل.</li>
+            </ul>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة الثالثة:</span> المقابل المالي وجدول الدفعات (Prix et Modalités de Paiement)</h3>
+            <p class="article-text">
+                تم الاتفاق بين الطرفين على أن القيمة المالية الإجمالية والنهائية لتطوير الوحدة الأولى (Module 1) حُددت بمبلغ إجمالي قدره:  
+                <strong>110,000 دج (مائة وعشرة آلاف دينار جزائري)</strong> مقفلة وغير قابلة للزيادة ما لم يُطلب تعديل جوهري في نطاق العمل.
+            </p>
+            <p class="article-text">
+                يلتزم الطرف الأول (العميل) بدفع هذا المقابل المالي إلى حساب الطرف الثاني (المطور) المذكور في مقدمة العقد وفقاً للجدول المرحلي التالي:
+            </p>
+
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>الدفعة المرحلية</th>
+                        <th>النسبة</th>
+                        <th>المبلغ بالدينار الجزائري (DZD)</th>
+                        <th>شروط واستحقاق الدفعة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>الدفعة الأولى (التسبيق)</strong></td>
+                        <td><strong>30%</strong></td>
+                        <td class="amount-cell">33,000 دج</td>
+                        <td>تُدفع فوراً عند توقيع هذا العقد من الطرفين لبدء أعمال التطوير وشراء المستلزمات.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الدفعة الثانية</strong></td>
+                        <td><strong>50%</strong></td>
+                        <td class="amount-cell">55,000 دج</td>
+                        <td>تُدفع عند إنجاز <strong>70%</strong> من المشروع (اكتمال محرك الحسابات وتوليد الوثائق ومعاينة الواجهات).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الدفعة الثالثة (النهائية)</strong></td>
+                        <td><strong>20%</strong></td>
+                        <td class="amount-cell">22,000 دج</td>
+                        <td>تُدفع بعد الفحص والمصادقة النهائية للعميل على جاهزية المنصة وتشغيلها الفعلي.</td>
+                    </tr>
+                    <tr style="background: #f1f5f9; font-weight: 800;">
+                        <td colspan="2"><strong>المجموع الإجمالي</strong></td>
+                        <td class="amount-cell" style="color: var(--primary);">110,000 دج</td>
+                        <td>مائة وعشرة آلاف دينار جزائري فقط لا غير.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة الرابعة:</span> مصاريف الاستضافة والسيرفر الخاص (Frais d'Hébergement & VPS)</h3>
+            
+            <div class="legal-notice">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div>
+                    <strong>بند صريح ومحدد بشأن تكاليف السيرفر:</strong>
+                    إن المقابل المالي المنصوص عليه في المادة الثالثة يمثل أتعاب التصميم والتطوير والبرمجة فقط. أما جميع <strong>التكاليف والرسوم الدورية المتعلقة بحجز السيرفر الخاص (VPS)، اسم النطاق (Domaine)، أو أي اشتراكات سحابية تقع بالكامل على عاتق ومسؤولية الطرف الأول (العميل) حصراً</strong>، ولا يتحمل الطرف الثاني (المطور) أي جزء منها.
+                </div>
+            </div>
+
+            <p class="article-text">
+                يقوم الطرف الثاني (المطور) بتقديم الاستشارة التقنية لاختيار أنسب سيرفر VPS (بمواصفات تضمن تشغيل الذكاء الاصطناعي وقاعدة البيانات داخل الجزائر للامتثال لقانون السيادة الرقمية 18-07)، ومباشرة تهيئته وتنصيب النظام عليه دون فرض أي رسوم إضافية عن التهيئة الأولى.
+            </p>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة الخامسة:</span> التزامات الطرفين (Obligations des Parties)</h3>
+            <p class="article-text"><strong>1. التزامات الطرف الثاني (المطور):</strong></p>
+            <ul class="article-list">
+                <li>الالتزام بالمعايير البرمجية والأمان وعزل البيانات وفق أرقى الممارسات الهندسية.</li>
+                <li>تسليم المنصة خالية من العيوب البرمجية في محرك الحسابات المالية (CNAS, IRG, STC).</li>
+                <li>توفير فترة ضمان وصيانة تصحيحية مجانية لمدة <strong>30 يوماً</strong> بعد التسليم النهائي لمعالجة أي خلل برمجي يظهر أثناء الاستخدام.</li>
+                <li>تدريب وتوجيه الطرف الأول أو من ينوب عنه على طريقة استخدام وإدارة المنصة.</li>
+            </ul>
+            <p class="article-text"><strong>2. التزامات الطرف الأول (العميل):</strong></p>
+            <ul class="article-list">
+                <li>توفير المستندات والنماذج المطلوبة (عينات كشوف الرواتب، الاتفاقيات، صيغة ملفات الفيرمان البنكي) في الوقت المناسب دون تأخير.</li>
+                <li>تحمل مصاريف السيرفر الخاص (VPS) كما نصت المادة الرابعة.</li>
+                <li>الالتزام بدفع الأقساط المالية في مواعيد استحقاقها المحددة بالمادة الثالثة.</li>
+            </ul>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة السادسة:</span> السرية وحماية المعطيات (Confidentialité)</h3>
+            <p class="article-text">
+                يتعهد الطرف الثاني بالمحافظة على السرية التامة لجميع البيانات والملفات والمعلومات المالية والمهنية التي يطلع عليها أو تُسلم له من طرف العميل بمناسبة تنفيذ هذا المشروع، والالتزام الصارم بعدم إفشائها أو استخدامها لأي غرض خارج نطاق هذا العقد، وذلك امتثالاً لأحكام القانون 18-07 المتعلق بحماية الأشخاص الطبيعيين في مجال معالجة المعطيات ذات الطابع الشخصي.
+            </p>
+        </div>
+
+        <!-- Article 7 -->
+        <div class="article">
+            <h3 class="article-title"><span>المادة السابعة:</span> القانون الواجب التطبيق وفض النزاعات (Litiges)</h3>
+            <p class="article-text">
+                يخضع هذا العقد ويفسر وفقاً للقوانين والتشريعات المعمول بها في الجمهورية الجزائرية الديمقراطية الشعبية. وفي حال حدوث أي نزاع أو خلاف ينشأ عن تفسير أو تنفيذ بنود هذا العقد، يسعى الطرفان لحله ودياً بطرق التراضي في أجل أقصاه 15 يوماً. وإذا تعذر ذلك، يُعرض النزاع على الجهة القضائية المختصة إقليمياً.
+            </p>
+        </div>
+
+        <!-- Signatures Section -->
+        <div class="signatures-section">
+            <p class="signatures-intro">
+                حُرر هذا العقد في نسختين أصليتين، بيد كل طرف نسخة للعمل والاحتجاج بها عند الاقتضاء، بعد أن قرأه الطرفان وتفهما جميع بنوده ووافقا عليها بالتراضي.
+            </p>
+
+            <div class="signatures-grid">
+                <!-- Signature Client -->
+                <div class="signature-card">
+                    <div>
+                        <div class="signature-role">الطرف الأول (العميل / صاحب المشروع)</div>
+                        <div class="signature-sub">السيد: قنوني الحسين</div>
+                        <div class="lu-mention">"قرئ وصودق عليه (Lu et approuvé)"</div>
+                    </div>
+                    
+                    <div class="empty-sign-space">
+                        (مكان التوقيع والمصادقة)
+                    </div>
+
+                    <div class="sign-date-place">
+                        بتاريخ: ..... / ..... / 2026 بـ: ............................
+                    </div>
+                </div>
+
+                <!-- Signature Developer -->
+                <div class="signature-card">
+                    <div>
+                        <div class="signature-role">الطرف الثاني (المطور / مقدم الخدمة)</div>
+                        <div class="signature-sub">السيد: بوخاري سليمان</div>
+                        <div class="lu-mention">"قرئ وصودق عليه (Lu et approuvé)"</div>
+                    </div>
+
+                    <div class="empty-sign-space">
+                        (مكان التوقيع والمصادقة)
+                    </div>
+
+                    <div class="sign-date-place">
+                        بتاريخ: ..... / ..... / 2026 بـ: ............................
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

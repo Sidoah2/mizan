@@ -1,0 +1,161 @@
+=== mizan_plan_implementation_fr_ar.pdf (5 pages) ===
+
+--- PAGE 1 ---
+Version : projet de travail v0.1 — 30 septembre 2026
+Statut : transmissible pour l'implémentation du socle ; aucune règle de paie autorisée en
+production sur la seule foi de ce document.
+Inventorier dépôt, branches, versions, schéma et migrations, règles déjà actives, données de
+test, sauvegardes et procédure de restauration ; comparer les addenda originaux au présent
+dossier et consigner les écarts. Aucun accès ou changement en production n'est autorisé par ce
+document. Préparer environnement de test séparé et plan de retour arrière avant les
+migrations ; ne pas supposer que l'infrastructure choisie est Supabase, ni modifier un autre
+projet.
+Livrer contrats temporels, transitions et tentatives, droits inter-dossiers, classification PII,
+contrôle des MQ, structure manifeste ou snapshot et démonstration de restauration. Critères :
+refus systématique des accès inter-dossiers ; correction bitemporelle sans écrasement ; entrées
+inchangées entre tentatives ; impossibilité de muter un snapshot clôturé ; aucune PII en MQ.
+Porte 2 isolement et droits, et Porte 3 données personnelles et complétude des libellés, sont
+vérifiées pour leur périmètre respectif. Les quatre portes sont des critères de validation, non
+quatre sprints successifs.
+Livrer compilateur ou interpréteur limité aux opérateurs approuvés, graphe de dépendances,
+traçabilité par nœud, registre N1 bitemporel et banc de tests sur données synthétiques. Les
+fiches non closes sont enregistrables avec implementation_autorisee=false et refusées par le
+moteur de production. Porte 1 : édition arabe, article, version temporelle, chaîne
+d'amendements, avis juridique et décision métier par règle. Porte 4 : tests dorés validés et non-
+régression des archives, avant activation d'une règle. Ne pas présenter l'exécution d'un exemple
+numérique isolé comme une validation métier.
+Livrer dictionnaires distinguant plateforme ou dossier et données ou gabarits, service isolé,
+politique de langue et chiffres versionnée, rendus AR et FR à partir de gabarits approuvés,
+archive et tests de hashes. Vérifier : libellé absent ⇒ blocage ; modification du catalogue ou
+gabarit ⇒ aucun changement des anciennes archives ; même clé ⇒ même artefact archivé ;
+MIZAN — Plan d'implémentation et acceptation / خطة
+القبول ومعايير التنفيذ
+Français
+Phase 0 — Protection de l'existant
+Phase 1 — Fondations
+Phase 2 — AST et corpus
+Phase 3 — Rendu
+
+
+--- PAGE 2 ---
+politique différente ⇒ clé distincte et différence vérifiable sur exemple choisi ; tests
+typographiques RTL. L'émission d'un document juridique en anglais et sa mention hors
+référence restent bloquées jusqu'à arbitrage L14.
+Rapprochement CNAS, base L19 découplée, réallocation analytique rétroactive après clôture.
+Interfaces, sources externes, schémas et tests à documenter avant développement ; aucune
+opération rétroactive ne modifie une archive clôturée.
+1. Source N1 applicable validée : sinon état EN_ATTENTE_N1 et pas d'exécution de production.
+2. Tenant, rôles, accès aux pièces et archives validés : sinon refus de traitement.
+3. PII et langues requises qualifiées : sinon blocage de l'étape concernée.
+4. Golden Tests, reproductibilité et immutabilité réussis : sinon pas d'activation ni de
+déploiement de la règle.
+Les portes peuvent être développées en parallèle sur le plan de l'outillage ; elles doivent toutes
+être franchies avant activation d'une règle. Une règle suspendue ne doit pas être contournée
+via un calcul manuel injecté comme résultat certifié.
+Pour chaque lot : pièces sources originales et empreintes, décisions et réserves signées, contrat
+versionné, migrations et retour arrière testés, tests automatisés et résultats, revue sécurité
+inter-dossiers, journal des anomalies, déploiement test puis validation explicite avant
+production. Écrire les tests négatifs : autre dossier, libellé manquant, source non validée,
+arrondi absent, règle expirée, décision ANEM divergente, tentative de mutation d'archive,
+régénération divergente, MQ avec PII. Ne jamais promettre un délai ou un coût sans périmètre,
+dépôt, équipe et infrastructure.
+1. Addenda 10, 12, 13, 15, 19, 19e intégraux et versions approuvées ; inventaire et titres exacts
+L1–L18 ; statut de L14 et séparation L19.
+2. JO arabes des textes ciblés, éditions et pagination exactes, modifications et périodes
+applicables, interprétation et visa du juriste ; ne pas réutiliser automatiquement le taux de
+2015 sur toute période.
+3. Assiettes SS et IRG, rubriques, arrondis de chaque poste, précision, FOS et coût employeur ;
+validation de la numérotation ou du regroupement des 14 postes.
+4. Validité temporelle des décisions ANEM, cumul, catégories ou zones, événements de fin et
+conditions de dérogation ; procédure de double saisie CNAS.
+5. Rappels IRG à rapprocher de l'art. 128 et de la FAQ DGI, traitement G50 déjà déposée, cas
+particuliers et barème applicable à la date concernée.
+Phase 4 — Modules périphériques
+Ordre des portes par règle
+Livraison et preuve attendues
+Questions bloquantes et pièces à fournir
+
+
+--- PAGE 3 ---
+6. Politique de langue de référence et mentions L14, dictionnaires de champs, gabarits AR et
+FR, bibliothèque PDF ou polices et politique de métadonnées.
+7. Contrats d'API ou MQ, définition des rôles, choix d'infrastructure, localisation des données,
+clés, sauvegardes, conservation des archives et procédure opérationnelle de restauration.
+Ne compléter aucun « à arbitrer » par intuition et ne convertir aucune source repérée en règle
+active sans visa ; remonter chaque écart sous forme de question et préserver les données et
+artefacts existants.
+عمل مسودة :اإلصدار v0.1 — 30 2026 سبتمبر
+بيئة في األجور لحساب قاعدة أي بتفعيل ُيسمح ال التقني؛ األساس تنفيذ أجل من للتسليم قابل :الحالة Production
+وحده المستند هذا إلى استنا ًدا.
+جرد Repository وBranches و واإلصداراتSchema وMigrations الختبار وبيانات المف ّعلة والقواعد
+وBackups أي المستند هذا يمنح ال .الفوارق وتسجيل المستند بهذا األصلية المالحق مقارنة ثم الستعادة؛ وإجراء
+إلى بالدخول إذن Production بيئة َّضر
+ُتح .تغييرها أو Test و منفصلةRollback plan قبل Migrationsوال ؛
+هي المختارة البنية أن ُيفترض Supabase، آخر مشروع ُيع َّدل وال.
+وتصنيف الملفات بين والصالحيات والمحاوالت و النتق الت الزمنية العقود ُتس َّلم PII في والتحكم MQ وبنية
+Manifest أو Snapshot منهجية؛ بصورة الملفات بين الوصول رفض :القبول معايير .الستعادة على القدرة وإثبات
+تصحيح Bitemporal تعديل استحالة المحاوالت؛ بين المدخالت ثبات محو؛ بال Snapshot وجود وعدم مغلق؛ PII
+في MQ. من ُيتحققGate 2و والحقوق للعزلGate 3البوابات .نطاقه ضمن لك ٌّ ،اللغات واكتمال الشخصية للبيانات
+أربعة وليست ،تحقق معايير األربع Sprints متعاقبة.
+ُيس َّلم Compiler أو Interpreter و ،المعتمدة العمليات على مقتصرDependency graph، لكل والتت ّبع Node،
+وLegal registry نموذج من Bitemporal، وTest harness غير البطاقات تسجيل يمكن .اصطناعية ببيانات
+مع المكتملةimplementation_autorisee=false، محرك ويرفضها Production. Gate 1: العربية الطبعة
+قاعدة لكل المهني والقرار القانوني والرأي التعديالت وسلسلة الزمني واإلصدار والمادة. Gate 4: Golden Tests
+حدوث وعدم معتمدة Regression أنه على منفرد رقمي مثال نجاح ُيق َّدم وال .القاعدة تفعيل قبل األرشيف في
+مهني اعتماد.
+ُتس َّلم Dictionaries تميز التي Platform أو Dossier وData أو Template، وأرقام لغة وسياسة ،معزولة وخدمة
+و ،اإلصدار محددةRenders من انطال ًقا والفرنسية بالعربية Templates واختبارات وأرشيف ،معتمدة Hashes.
+غياب :من ُيتحقق Data label ⇒ تغيير منع؛ Catalog أو Template ⇒ نفسه المفتاح القديم؛ األرشيف تغيير عدم ⇒
+Artifact واختبارات مختار؛ مثال على فحصه يمكن وفارق مختلف مفتاح ⇒ السياسة اختالف نفسه؛ المؤرشف
+Consigne finale au développeur
+العربية
+القائم حماية — 0 المرحلة
+األسس — 1 المرحلة
+2 المرحلة — AST القانوني والمتن
+3 المرحلة — Rendering
+
+
+--- PAGE 4 ---
+تنسيق RTL. حتى محظورين يظالن المرجعية اللغة بغير الخاصة والعبارة باإلنجليزية قانوني أثر ذي مستند إصدار
+حسم L14.
+تصريحات مطابقة CNAS، وقاعدة L19 تحتاج .اإلغالق بعد رجعي بأثر التحليلي التوزيع وإعادة ،المنفصلة
+Interfaces و الخارجية والمصادرSchemas رجعي بأثر معالجة أي تغ ّير وال التطوير؛ قبل توثيق إلى و الختبارات
+مغل ًقا أرشي ًفا.
+1. مصدر اعتماد N1 فالحالة وإال :المنطبقEN_ATTENTE_N1في تنفيذ وال Production.
+2. اعتماد Tenant وRoles المعالجة ُترفض وإال :واألرشيف المستندات إلى الوصول وصالحيات.
+3. تأهيل PII المعنية المرحلة ُتمنع وإال :المطلوبة واللغات.
+4. نجاح Golden Tests وال تفعيل فال وإال :التعديل قابلية وعدم اإلنتاج إعادة وقابلية Deployment للقاعدة.
+بحقن قاعدة تعليق ُيتجاوز وال .قاعدة أي تفعيل قبل جمي ًعا اجتيازها يجب لكن بالتوازي؛ البوابات أدوات تطوير يمكن
+معتمدة نتيجة باعتباره يدوي حساب.
+من ومقابالتها األصلية المستندات :دفعة لكل Hashes، ،اإلصدار محدد وعقد ،الموقعة والتحفظات والقرارات
+وMigrations وRollback و ،مج ّربAutomated tests ،الشذوذ وسجل ،الملفات بين األمن ومراجعة ،ونتائجها
+وDeployment إلى Test قبل صريحة موافقة ثم Production. ُتكتب Negative tests ،آخر ملف :التالية للح الت
+وData label و ،معتمد غير ومصدر ،مفقودRounding policy وقرار ،منتهية وقاعدة ،غائبة ANEM ،متعارض
+ورسالة ،مختلفة توليد وإعادة ،األرشيف تغيير ومحاولة MQ تحتوي PII. النطاق معرفة قبل كلفة أو بمدة ُيو َعد ال
+وRepository التحتية والبنية والفريق.
+1. 19و 19و 15و 13و 12و 10 للمالحق المعتمدة واإلصدارات الكاملة النصوصeلـ الدقيقة والعناوين والجرد ؛ L1–
+L18وحالة ؛ L14 وفصل L19.
+2. والفترات والتعديالت ،الدقيقة وصفحاتها وأعدادها ،المستهدفة للنصوص بالعربية الرسمية الجريدة طبعات
+فترة لكل 2015 سنة نسبة استخدام تلقائ ًيا ُيعاد وال واعتماده؛ المختص القانوني وتفسير ،المنطبقة.
+3. Assiettes و الجتماعي بالضمان الخاصةIRG، و ،والبنودRounding policy وصندوق ،والدقة ،عنصر لكل
+وتجميعها عشر األربعة البنود ترقيم واعتماد العمل؛ صاحب وتكلفة ،الجتماعية الخدمات.
+4. لقرارات الزمنية الصالحية ANEM، وشروط ،العالقة نهاية وأحداث ،المناطق أو والفئات ،األجهزة بين والجمع
+لقرارات المزدوج اإلدخال وإجراء الستثناء؛ CNAS.
+5. في المتأخرة المستحقات IRG و 128 المادة مع ومطابقتهاFAQ عن الصادرة DGI، ومعالجة G50 المودعة
+بتاريخها المنطبق والجدول الخاصة والح الت ،بالفعل.
+6. وعبارات المرجعية اللغة سياسة L14، وDictionaries و ،الحقولTemplates و ،والفرنسية العربيةPDF
+library وسياسة والخطوط Metadata.
+7. عقود API أو MQ، وتعريف Roles، و ،والمفاتيح ،البيانات حفظ ومكان ،التحتية البنية واختيارBackups،
+لالستعادة التشغيلي واإلجراء ،باألرشيف و الحتفاظ.
+المحيطة الوحدات — 4 المرحلة
+قاعدة لكل البوابات ترتيب
+المطلوبة واألدلة التسليم
+المطلوبة والمستندات المانعة األسئلة
+
+
+--- PAGE 5 ---
+كل ُترفع اعتماد؛ دون مف ّعلة قاعدة إلى مبدئ ًيا محدد مصدر ُيح َّول وال ،بالحدس »قرار إلى تحتاج« خانة أي ُتمأل ال
+و البيانات على الحفاظ مع ،سؤال شكل على فجوةArtifacts القائمة.
+للمط ّور النهائية التعليمات
+
+

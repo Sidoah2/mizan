@@ -1,0 +1,9 @@
+{
+  "name": "mizan-saas",
+  "version": "1.0.0",
+  "description": "MIZAN SaaS - Enterprise Algerian HR, Payroll & AI Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

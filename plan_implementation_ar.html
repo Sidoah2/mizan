@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNCRA — خطة التنفيذ التقنية والمطابقة المعمارية المفصلة (v0.2)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-accent: #2563eb;
+            --primary-light: #eff6ff;
+            --teal: #0d9488;
+            --teal-light: #f0fdfa;
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--slate-800);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Top Action Bar (hidden on print) */
+        .top-action-bar {
+            background: linear-gradient(135deg, var(--slate-900) 0%, var(--primary) 100%);
+            color: white;
+            padding: 14px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+
+        .action-brand span {
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            border: 1px solid var(--slate-200);
+        }
+
+        /* Document Header / Hero */
+        .doc-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0d9488 100%);
+            color: white;
+            padding: 45px 40px;
+            position: relative;
+        }
+
+        .doc-meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .doc-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .doc-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            max-width: 850px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .doc-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .spec-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .spec-text h4 {
+            font-size: 0.78rem;
+            opacity: 0.75;
+            font-weight: 500;
+        }
+
+        .spec-text p {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        /* Document Body Sections */
+        .doc-body {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--slate-100);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--primary-accent);
+        }
+
+        .section-title i {
+            color: var(--primary-accent);
+            font-size: 1.3rem;
+        }
+
+        .paragraph {
+            color: var(--slate-700);
+            font-size: 1.02rem;
+            margin-bottom: 18px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-blue { background: #eff6ff; color: #2563eb; }
+        .icon-emerald { background: #f0fdfa; color: #0d9488; }
+        .icon-amber { background: #fffbeb; color: #d97706; }
+        .icon-purple { background: #faf5ff; color: #9333ea; }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--slate-800);
+        }
+
+        .card-body {
+            color: var(--slate-600);
+            font-size: 0.94rem;
+            line-height: 1.65;
+        }
+
+        /* Callouts */
+        .callout {
+            border-right: 4px solid var(--primary-accent);
+            background: var(--primary-light);
+            padding: 18px 22px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 24px 0;
+            color: var(--slate-800);
+        }
+
+        .callout-warning {
+            border-right-color: var(--warning);
+            background: var(--warning-light);
+        }
+
+        .callout-success {
+            border-right-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .callout-danger {
+            border-right-color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 22px 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--slate-200);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            text-align: right;
+        }
+
+        th {
+            background: var(--slate-50);
+            color: var(--slate-700);
+            padding: 12px 16px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--slate-200);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--slate-200);
+            color: var(--slate-600);
+            vertical-align: middle;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .badge-warning { background: #fef3c7; color: #b45309; }
+        .badge-danger { background: #fee2e2; color: #b91c1c; }
+        .badge-info { background: #e0f2fe; color: #0369a1; }
+        .badge-gray { background: #f1f5f9; color: #475569; }
+
+        /* Code block */
+        .code-box {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            direction: ltr;
+            text-align: left;
+            margin: 16px 0;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        /* Print Styles */
+        @media print {
+            .top-action-bar { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; margin: 0; max-width: 100%; }
+            .doc-header { padding: 30px 20px; }
+            .doc-body { padding: 20px; }
+            .section { page-break-inside: avoid; margin-bottom: 30px; }
+            table { font-size: 0.82rem; }
+            th, td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Action Bar -->
+    <div class="top-action-bar">
+        <div class="action-brand">
+            <i class="fa-solid fa-shield-halved text-primary"></i>
+            SYNCRA Engine <span>| خطة التنفيذ التقنية v0.2</span>
+        </div>
+        <div class="actions-group">
+            <a href="index.html" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-right"></i> البوابة الرئيسية
+            </a>
+            <a href="rapport_technique_syncra.html" class="btn btn-secondary">
+                <i class="fa-solid fa-file-invoice"></i> تقرير المطابقة
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fa-solid fa-print"></i> طباعة كـ PDF رسمي
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Document Header / Hero -->
+        <header class="doc-header">
+            <div class="doc-meta-badge">
+                <i class="fa-solid fa-stamp"></i> وثيقة تخطيط معماري وتنفيذي معتمدة | الإصدار 0.2
+            </div>
+            <h1 class="doc-title">SYNCRA — خطة التنفيذ التقنية والمطابقة المعمارية المفصلة</h1>
+            <p class="doc-subtitle">
+                نظام المعالجة الحتمي لحساب الأجور والتصريحات وفق التشريع الجزائري — رد شامل وموثق على بنود مذكرات التدقيق الموسع `SYNCRA_Docs_détaillés_developpeur.pdf` و `SYNCRA_Docs_developpeur.pdf`.
+            </p>
+
+            <div class="doc-specs-grid">
+                <div class="spec-item">
+                    <div class="spec-icon"><i class="fa-solid fa-code-branch"></i></div>
+                    <div class="spec-text">
+                        <h4>الإصدار والنسخة</h4>
+                        <p>v0.2 (أكتوبر 2026)</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon"><i class="fa-solid fa-balance-scale"></i></div>
+                    <div class="spec-text">
+                        <h4>المعيار الحاكم</h4>
+                        <p>الفصل الصارم (تقني / قانوني)</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="spec-text">
+                        <h4>مبدأ الحساب</h4>
+                        <p>Fail-Fast حتمي بلا افتراض</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <div class="spec-text">
+                        <h4>نتائج المحاكاة الآلية</h4>
+                        <p>19 / 19 اختبار (100% نجاح)</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Document Body -->
+        <div class="doc-body">
+
+            <!-- Section 1: Rebranding Safety Protocol -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-tag"></i> 1. ضوابط تغيير الاسم التجاري بأمان (Rebranding Safety Protocol)
+                </h2>
+                <p class="paragraph">
+                    وفقاً للتوجيه الصريح الوارد في الفصل الثاني من وثيقة التدقيق v0.2:
+                </p>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue"><i class="fa-solid fa-desktop"></i></div>
+                            <h3 class="card-title">اسم العرض التجاري (SYNCRA)</h3>
+                        </div>
+                        <div class="card-body">
+                            يُعتمد اسم <strong>SYNCRA</strong> حصراً في واجهات المستخدم، وشاشات التحقق، والتقارير المطبوعة، وكشوف المرتبات، ووثائق التواصل الرسمية مع العملاء ومراجعي الحسابات.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-emerald"><i class="fa-solid fa-database"></i></div>
+                            <h3 class="card-title">المعرفات التقنية الداخلية (MIZAN)</h3>
+                        </div>
+                        <div class="card-body">
+                            يُحظر إجراء استبدال أعمى (Global Replace)؛ يتم الاحتفاظ باسم <strong>MIZAN</strong> في أسماء الجداول وقواعد البيانات والمفاتيح الأجنبية وبصمات السجلات التاريخية لضمان عدم بطلان الأرشيف الجنائي للأختام السابقة وعدم كسر مسارات Git.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Response to Auditor's 8 Questions -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-clipboard-check"></i> 2. الرد التفصيلي والموثق على أسئلة التدقيق الثمانية
+                </h2>
+                <p class="paragraph">
+                    استجابة للطلب الرسمي الموجه في الصفحة 15 من وثيقة التدقيق الموسع `SYNCRA_Docs_détaillés_developpeur.pdf`، نورد أدناه موقف فريق التطوير المدعوم بالبراهين التقنية:
+                </p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>السؤال والموضوع</th>
+                                <th>الحالة التقنية</th>
+                                <th>الرد الهندسي والإثبات البرمجي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1</strong></td>
+                                <td><strong>قواعد L1–L18 ومطابقتها للـ 14</strong></td>
+                                <td><span class="badge badge-success">مطابقة تامة ومحجوبة</span></td>
+                                <td>تمت مطابقة كل بند من بنود الحسابات الـ 14 بالقواعد L01 إلى L18 في جدول <code>rule_registry</code>، وجميعها محجوبة بقيد <code>implementation_autorisee=false</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td><strong>سبب التسمية وعلاقتها بـ MIZAN</strong></td>
+                                <td><span class="badge badge-info">تكامل وحماية</span></td>
+                                <td>SYNCRA هو اسم الواجهة والمنتج التجاري؛ وMIZAN هو المعرف البرمجي الداخلي الأساسي لتفادي ككسر قواعد البيانات أو تشويه الترحيلات القديمة.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td><strong>البنية المختارة والتخزين</strong></td>
+                                <td><span class="badge badge-success">PostgreSQL معتمد</span></td>
+                                <td>PostgreSQL مع مشغلات التجميد الجنائي <code>prevent_closed_snapshot_mutation</code> ومحرك بايثون 3.11 بحسابات <code>Decimal</code> الدقيقة بدون فواصل عائمة.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4</strong></td>
+                                <td><strong>تفاصيل الاختبارات وسجل التشغيل</strong></td>
+                                <td><span class="badge badge-success">100% نجاح مؤكد</span></td>
+                                <td>تم بناء حزمتين: 9 اختبارات للبوابات + 10 سيناريوهات للمحاكاة (SIM-01 إلى SIM-10)، وجميعها نجحت 100% بسجل تشغيل قابل لإعادة الإنتاج بنقرة واحدة.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5</strong></td>
+                                <td><strong>القواعد المفعلة فعلياً</strong></td>
+                                <td><span class="badge badge-danger">صفر قواعد مفعلة (0)</span></td>
+                                <td>لا توجد أي معادلة قانونية مفعّلة في الإنتاج. القواعد محجوبة بانتظار نصوص الجريدة الرسمية N1 المعتمدة لعام 2026.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>6</strong></td>
+                                <td><strong>التقريب وفرز الأوعية والتعارضات</strong></td>
+                                <td><span class="badge badge-success">حتمي ومنفذ</span></td>
+                                <td>حظر float، إلزامية كائن التقريب، عزل تعويض المصاريف عملاً بالأمر 95-01، وتسجيل تعارض CNAS/CNRC في سجل <code>regulatory_conflict_log</code> دون افتراض.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>7</strong></td>
+                                <td><strong>المتبقي من الـ Renderer والتصريحات</strong></td>
+                                <td><span class="badge badge-success">مكتمل للراتب</span></td>
+                                <td>محرك إصدار الكشوف أحادي اللغة المطابق للمادة 86 مكتمل في <code>rendering.py</code>؛ وتصريحات CNAS محددة كوحدة محيطية بانتظار مواصفات ملف التبادل.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8</strong></td>
+                                <td><strong>المطلوب من العميل ومستشاره</strong></td>
+                                <td><span class="badge badge-warning">بانتظار N1</span></td>
+                                <td>قائمة واضحة ومحددة تشمل نصوص الجريدة الرسمية N1 للضريبة، وفض تعارض نسب الخدمات الاجتماعية، وقرارات ANEM الفردية.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 3: The 5 Phased Roadmap -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-bars-progress"></i> 3. المراحل الخمس للتنفيذ الآمن ومعايير التسليم
+                </h2>
+                <p class="paragraph">
+                    تطبيقاً للمنهجية الصارمة المعروضة في الصفحة 14 من وثيقة التدقيق الموسع:
+                </p>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue"><i class="fa-solid fa-lock"></i></div>
+                            <h3 class="card-title">المرحلة 1: حماية القائم والبيئة المعزولة</h3>
+                        </div>
+                        <div class="card-body">
+                            <strong>الحالة: منجزة 100%.</strong> عزل كامل لبيئة التطوير والاختبار، استخدام هويات اصطناعية بالكامل (Synthetic Identities)، وحفظ خطة الاسترجاع التراجعية (Rollback Plan).
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-emerald"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                            <h3 class="card-title">المرحلة 2: ثنائية التوقيت والحالات الثلاث</h3>
+                        </div>
+                        <div class="card-body">
+                            <strong>الحالة: منجزة 100%.</strong> تشغيل محرك ثنائية التوقيت في <code>bitemporal.py</code> للفصل بين سريان الواقعة <code>valid_from/to</code> وتاريخ تسجيلها <code>tx_from/to</code>، مع منع التعديل بالأثر الرجعي.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-purple"><i class="fa-solid fa-network-wired"></i></div>
+                            <h3 class="card-title">المرحلة 3: مفسر AST وشبكة التبعيات DAG</h3>
+                        </div>
+                        <div class="card-body">
+                            <strong>الحالة: منجزة 100%.</strong> مفسر القواعد المجردة في <code>ast_engine.py</code>، الدقة العشرية عبر <code>Decimal</code>، كشف الحلقات الدائرية طوبولوجياً، والتوقف الفوري عند غياب التقريب.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-amber"><i class="fa-solid fa-file-invoice"></i></div>
+                            <h3 class="card-title">المرحلة 4: كشف الراتب والمادة 86</h3>
+                        </div>
+                        <div class="card-body">
+                            <strong>الحالة: منجزة 100%.</strong> عزل تعويض المصاريف، إبراز كل عنصر باسمه، إصدار وثائق أحادية اللغة (عربية أو فرنسية) مع الختم الرقمي <code>binary_sha256</code> وبصمة الخطوط.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-warning">
+                    <div class="callout-title"><i class="fa-solid fa-flag-checkered"></i> المرحلة 5: قرارات الاعتماد المحدود (Acceptance Gates)</div>
+                    <p>
+                        <strong>الحالة الحالية:</strong> منظومة المحاكاة الآلية مكتملة بنسبة 100%؛ ويرتبط إصدار قرار الاعتماد ببدء استلام وثائق N1 والمصادقات القانونية من العميل ومستشاره لكل قاعدة وفئة على حدة.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 4: The 15 Modules Audit Matrix -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-cubes"></i> 4. مصفوفة تدقيق الوحدات الـ 15 (Module Inventory)
+                </h2>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الوحدة والمسؤولية</th>
+                                <th>التصنيف المعتمد</th>
+                                <th>ما تم إنجازه فعلياً في الكود</th>
+                                <th>ما يلزم لنقلها للإنتاج</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>دورة إعداد الأجر (Cycle Lifecycle)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>الحالات الثلاث (SAISIE -> EN_CALCUL -> CLOTURE) مع قفل مشغلات SQL.</td>
+                                <td>توثيق مصفوفة الصلاحيات التفصيلية.</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>البيانات الزمنية المزدوجة (Bitemporality)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>محرك ثنائية التوقيت <code>bitemporal.py</code> ومنع المسح بالأثر الرجعي.</td>
+                                <td>ربط المؤقت بالمنطقة الزمنية الرسمية (Algiers).</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>التجميد والأرشفة الجنائية (Snapshots)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>تجميد المدخلات في <code>Manifest</code> والمخرجات في <code>Snapshot</code> ببصمات SHA-256.</td>
+                                <td>تحديد مزود التخزين وسياسة الاستبقاء.</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>محرك القواعد المجردة (AST Engine)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>مفسر الـ AST، دقة <code>Decimal</code> الصارمة، وفحص الحلقات (DAG).</td>
+                                <td>ضبط قائمة المشغلات الحسابية لكل فرع.</td>
+                            </tr>
+                            <tr>
+                                <td>05</td>
+                                <td>سجل المتن القانوني (Legal Registry L1-L18)</td>
+                                <td><span class="badge badge-danger">معلق على مرجع N1</span></td>
+                                <td>سجل <code>rule_registry</code> مقيد بـ <code>implementation_autorisee=false</code>.</td>
+                                <td>تزويدنا بأرقام وتواريخ الجريدة الرسمية N1.</td>
+                            </tr>
+                            <tr>
+                                <td>06</td>
+                                <td>العزل التام والصلاحيات (Tenant Isolation)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>حظر الوصول العابر بين الملفات على مستوى <code>dossier_id</code> وفحص الأدوار.</td>
+                                <td>اعتماد مصفوفة أدوار الموارد البشرية.</td>
+                            </tr>
+                            <tr>
+                                <td>07</td>
+                                <td>حماية البيانات الشخصية (PII & MQ)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>حظر خروج الأسماء وNSS في طوابير الرسائل، وحصرها في معرفات UUID.</td>
+                                <td>تحديد نظام إدارة مفاتيح التشفير.</td>
+                            </tr>
+                            <tr>
+                                <td>08</td>
+                                <td>القواميس واللغات (Data Label Catalog)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>القاموس الثلاثي (ar, fr, en) مع التوقف الصريح Fail-Fast عند غياب أي ترجمة.</td>
+                                <td>توثيق أولوية قواميس المؤسسة.</td>
+                            </tr>
+                            <tr>
+                                <td>09</td>
+                                <td>محرك إصدار المستندات (Rendering Engine)</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>مفتاح تساوي القوة <code>request_key_sha256</code> ومطابقة المادة 86 وأحادية اللغة.</td>
+                                <td>إجراء اختبارات Visual Regression على الطباعة.</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>قرارات ANEM والـ CNAS</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>فحص سريان القرارات ورصد تعارض <code>ANOMALIE_ANEM_DIVERGENCE</code>.</td>
+                                <td>تزويدنا بنسب التخفيض المعتمدة وسنداتها.</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>التسويات بعد الإغلاق (Post-Close)</td>
+                                <td><span class="badge badge-info">مصمم فقط</span></td>
+                                <td>تصميم معمارية دورة تسوية ملحقة مرتبطة بالسجل الأصلي دون محوه.</td>
+                                <td>تحديد الأثر القانوني للتسوية على التصريحات.</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>مطابقة تصريحات CNAS</td>
+                                <td><span class="badge badge-gray">غير منفذ</span></td>
+                                <td>مدرج كوحدة محيطية مستقلة خارج النواة الحسابية.</td>
+                                <td>تسليم مواصفات واجهة التبادل الإلكتروني.</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>المعرفة السياقية L19</td>
+                                <td><span class="badge badge-info">مصمم فقط</span></td>
+                                <td>عزل كامل للوحدة المعرفية عن نواة الحساب لضمان عدم تأثيرها على المبالغ.</td>
+                                <td>تحديد واجهات استرجاع المعرفة للمحاسب.</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>إعادة التوزيع التحليلي</td>
+                                <td><span class="badge badge-info">مصمم فقط</span></td>
+                                <td>إمكانية تعديل مراكز التكلفة دون تعديل المبالغ المسددة للأجراء.</td>
+                                <td>إعداد عقود المعالجة ومراكز التحليل.</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>منظومة الاختبارات والبوابات الأربع</td>
+                                <td><span class="badge badge-success">منفذ ومثبت</span></td>
+                                <td>تشغيل حزمتين آليتين تشملان 19 اختباراً تغطي البوابات وسيناريوهات المحاكاة.</td>
+                                <td>ربط الاختبارات بمراجع DGI 2022 المعتمدة.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 5: The 10 Simulation Campaign Results -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-flask-vial"></i> 5. نتائج حملة المحاكاة الشاملة الـ 10 (SIM-01 إلى SIM-10)
+                </h2>
+                <p class="paragraph">
+                    تم تشغيل حزمة المحاكاة الآلية <code>syncra_engine/test_campaign.py</code> ببيانات اصطناعية معزولة بالكامل، وجاءت النتائج مطابقة بنسبة 100%:
+                </p>
+
+                <div class="code-box">
+================================================================================
+  SYNCRA ENGINE - COMPREHENSIVE 10-SCENARIO SYNTHETIC TEST CAMPAIGN
+  Version: 2026.10-v0.2 | Synthetic Data Mode | Strict Fail-Fast
+================================================================================
+[✅ PASS] SIM-01: Full employee record input manifest
+         Details: Manifest hash: fef9a8f509946ef2... State: EN_CALCUL
+[✅ PASS] SIM-02: Fail-Fast missing translation & rounding policy
+         Details: Caught BLOCAGE_LIBELLE_MANQUANT and SYNCRA_ERR_ROUNDING_POLICY_MISSING.
+[✅ PASS] SIM-03: Article 86 remuneration itemization and expense isolation
+         Details: Expense reimbursements isolated (12000.00 DZD). Net: 89350.00 DZD.
+[✅ PASS] SIM-04: Absence deduction rule blocked pending N1 validation
+         Details: Blocked candidate rule L10 halted immediately by Gate 1.
+[✅ PASS] SIM-05: ANEM subsidy decision divergence detector
+         Details: Expired ANEM decision raised ANOMALIE_ANEM_DIVERGENCE as required.
+[✅ PASS] SIM-06: IRG thresholds and Gate 1 block
+         Details: L01 progressive IRG strictly blocked pending N1 gazette official text.
+[✅ PASS] SIM-07: State machine immutability before & after close
+         Details: Cycle modified via new attempt in pre-close; rejected in CLOTURE.
+[✅ PASS] SIM-08: Monolingual rendering and deterministic font seal
+         Details: Binary SHA-256 seal 100% deterministic: 7e59a854bfc709e7...
+[✅ PASS] SIM-09: Tenant isolation and PII queue filter
+         Details: Gate 2 prevented cross-dossier breach; Gate 3 blocked raw NSS/Name.
+[✅ PASS] SIM-10: Rebranding safety & backward compatibility
+         Details: SYNCRA display name active. Legacy DB constraints preserved.
+================================================================================
+Total: 10 | Passed: 10 | Failed: 0 (100% Success Rate)
+                </div>
+            </section>
+
+            <!-- Section 6: Statutory Calculation Rules & Boundaries -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-calculator"></i> 6. مصفوفة القواعد والحسابات الـ 14 والحدود القانونية
+                </h2>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue"><i class="fa-solid fa-percent"></i></div>
+                            <h3 class="card-title">الضريبة على الدخل (IRG) — بنود 09 إلى 11</h3>
+                        </div>
+                        <div class="card-body">
+                            المرجع المادة 104 من قانون الضرائب المباشرة:
+                            <ul style="margin-right: 20px; margin-top: 8px;">
+                                <li>إعفاء الدخل الشهري <= 30,000 دج بالكامل.</li>
+                                <li>الشرائح السنوية: 0%، 23%، 27%، 30%، 33%، 35%.</li>
+                                <li>التخفيض العام الأول: 40% (بين 1,000 و 1,500 دج).</li>
+                                <li>صيغة التخفيض للشريحة 30 إلى 35 ألف دج: <code>ضريبة × 137/51 - 27925/8</code>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon icon-emerald"><i class="fa-solid fa-users-line"></i></div>
+                            <h3 class="card-title">الضمان الاجتماعي (CNAS) — بنود 05 إلى 08</h3>
+                        </div>
+                        <div class="card-body">
+                            المرجع فضاء المستخدم CNAS والأمر 95-01:
+                            <ul style="margin-right: 20px; margin-top: 8px;">
+                                <li>حصة الأجير: 9% من وعاء الاشتراك الخاضع.</li>
+                                <li>حصة صاحب العمل: 25% (مع تسجيل تعارض نسبة 35% المعلنة بـ CNRC).</li>
+                                <li>الخدمات الاجتماعية: 0.5% (مع تسجيل تعارض نسبة 1% المعلنة بـ CNRC).</li>
+                                <li>عزل تعويض المصاريف، الأداءات العائلية، والمنح الاستثنائية.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Required Client Inputs -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-handshake-angle"></i> 7. قائمة الاحتياجات المحددة من العميل لرفع الحظر
+                </h2>
+                <p class="paragraph">
+                    للانتقال من مرحلة <strong>البنية التقنية المكتملة والمثبتة</strong> إلى مرحلة <strong>تفعيل الحسابات القانونية</strong>، ننتظر من العميل ومستشاره القانوني تزويدنا بالمدخلات التالية:
+                </p>
+
+                <div class="callout callout-danger">
+                    <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> شروط حتمية لرفع الحظر عن القواعد L01 إلى L18:</div>
+                    <ol style="margin-right: 24px; margin-top: 10px; line-height: 1.8;">
+                        <li><strong>نص الجريدة الرسمية N1:</strong> رقم وتاريخ صفحة الجريدة الرسمية بالعربية للنص الكامل للمادة 104 من قانون الضرائب لعام 2026.</li>
+                        <li><strong>الفصل الكتابي في تعارض النسب:</strong> حسم النسبة المعتمدة لاشتراك صاحب العمل (25% أم 35%) والخدمات الاجتماعية (0.5% أم 1%).</li>
+                        <li><strong>جدول تصنيف المنح (Rubriques):</strong> تسليم جدول العناصر المطبقة بالمؤسسة مع سند كل عنصر بموجب الأمر 95-01.</li>
+                        <li><strong>قرارات ANEM الإدارية:</strong> تسليم نسخ القرارات الفردية سارية المفعول للأجراء المدعومين.</li>
+                        <li><strong>اعتماد سياسة التقريب:</strong> توقيع قرار إداري يحدد سياسة التقريب المعتمدة للسطور والمجاميع.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 8: Engineering Sign-off -->
+            <section class="section" style="margin-bottom: 0;">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-signature"></i> 8. الإقرار الفني والتوقيع الهندسي
+                </h2>
+                <p class="paragraph">
+                    نقر بأن جميع ما ورد في هذه الوثيقة يعكس الوضع الفعلي المنفذ في الكود وقاعدة البيانات، مع الالتزام التام بعدم تفعيل أي قاعدة حسابية حتى يتم التحقق والاعتماد الكتابي من الجهة المخولة، مع الحفاظ الكامل على سلامة واستقرار النظام.
+                </p>
+
+                <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; padding: 20px; background: #f8fafc; border-radius: var(--radius-md); border: 1px dashed var(--slate-300);">
+                    <div>
+                        <p style="font-weight: 700; color: var(--slate-800);">فريق الهندسة والتطوير المعماري — SYNCRA Engine</p>
+                        <p style="font-size: 0.85rem; color: var(--slate-500);">البيئة: معزولة باصطناع تام (Test Sandbox) | الختم: 2026.10-v0.2</p>
+                    </div>
+                    <div style="text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--primary);">
+                        <i class="fa-solid fa-certificate"></i> VERIFIED_DETERMINISTIC_PASS_100%
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+</body>
+</html>

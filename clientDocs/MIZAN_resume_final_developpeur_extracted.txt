@@ -1,0 +1,367 @@
+=== MIZAN_resume_final_developpeur.pdf (10 pages) ===
+
+--- PAGE 1 ---
+Version : v0.2 — 30 septembre 2026
+Statut : transmissible pour le socle technique, la préparation du corpus et les tests sur données
+fictives.
+Interdiction : aucune règle de paie ne doit être activée en production et aucun résultat
+réglementaire ne doit être émis sur la seule base de ce dossier.
+MIZAN doit être conçu comme un moteur de paie déterministe, traçable, versionné et isolé par
+dossier client. Le droit algérien constitue la source de vérité ; les logiciels du marché servent
+uniquement de comparateurs fonctionnels et ne constituent ni des sources juridiques ni des
+cibles de migration.
+Les neuf décisions fonctionnelles explicitement retenues sont les suivantes :
+droit algérien comme source de vérité ;
+développeur responsable de la base et de l’implémentation ;
+interface MIZAN en arabe, français et anglais ;
+chaque document généré dans une seule langue ;
+bulletin réglementaire séparé de toute annexe explicative ;
+bulles d’explication réservées au gestionnaire de paie ;
+aucun éditeur cité dans les documents MIZAN ;
+remise électronique du bulletin encore ouverte ;
+interdiction d’inventer, supposer ou compléter silencieusement.
+Le flux cible est :
+Saisie et pièces
+→ contrôle des accès et qualification
+→ données bitemporelles
+→ gel du manifeste
+→ compilation/évaluation AST versionnée
+→ tentative de calcul
+→ validation et clôture du snapshot
+→ rendu monolingue
+→ archivage de l’artefact
+L19 reste une base de connaissances contextuelle séparée. Elle ne doit jamais modifier
+automatiquement les entrées, règles, paramètres ou résultats du moteur.
+MIZAN — Résumé final pour le développeur
+1. Périmètre confirmé
+2. Architecture à construire
+
+
+--- PAGE 2 ---
+Les états métier retenus sont :
+SAISIE → EN_CALCUL → CLOTURE
+SAISIE : saisie et correction autorisées selon les droits.
+EN_CALCUL : entrées, références et versions gelées ; les tentatives sont rattachées au même
+gel.
+CLOTURE : snapshot scellé et consultable en lecture seule.
+Le retour EN_CALCUL → SAISIE est possible uniquement pour corriger puis effectuer un nouveau
+gel. Les modalités d’autorisation et la conservation des tentatives précédentes restent à
+détailler. Une correction après clôture doit créer un traitement ou une version corrélée sans
+modifier l’original.
+Chaque donnée métier et chaque paramètre versionné doivent conserver :
+la période de validité dans le monde réel ;
+la période à laquelle MIZAN en a eu connaissance et l’a enregistré.
+Une correction tardive ne doit jamais supprimer la valeur historique. La granularité des dates,
+les bornes inclusives ou exclusives, le fuseau, les chevauchements et les migrations doivent
+être documentés avant le schéma définitif.
+À la clôture, le snapshot doit conserver au minimum :
+le manifeste gelé ;
+les entrées utilisées ;
+les pièces et décisions référencées ;
+les versions exactes des paramètres ;
+la version AST ;
+les résultats numériques ;
+la trace des règles ;
+les libellés ar/fr/en utilisés ;
+la version du moteur ;
+les anomalies et blocages ;
+l’empreinte de l’artefact produit.
+Le snapshot clôturé ne doit pas être recalculé pour être rendu à nouveau : le rendu historique
+doit être obtenu à partir de l’archive et du snapshot.
+États obligatoires
+Bitemporalité
+Snapshot
+
+
+--- PAGE 3 ---
+Le moteur doit utiliser une représentation déclarative et versionnée des règles sous forme
+d’AST. Les formules métier ne doivent pas être codées en dur dans un traitement impératif.
+L’AST doit prévoir :
+entrées typées ;
+constantes datées et validées ;
+opérations autorisées ;
+conditions ;
+sorties ;
+dépendances ;
+provenance juridique ;
+identifiant de version ;
+statut d’autorisation ;
+version de l’interpréteur.
+Le graphe de dépendances doit détecter les cycles et produire un ordre reproductible. Le
+critère de départage des règles indépendantes reste à documenter. Les opérateurs, la précision
+décimale, les erreurs, les arrondis et la sérialisation doivent être définis avant toute activation
+métier. Les montants de paie ne doivent pas reposer sur des float binaires.
+Le dossier_id doit être présent dans les objets, traitements, archives et contrôles. Les droits
+doivent être vérifiés à chaque frontière : API, fichiers, jobs, exports, rendu, files de messages et
+accès directs. Les tests négatifs inter-dossiers sont obligatoires.
+Les messages MQ ne doivent contenir que des identifiants techniques autorisés, jamais de nom,
+salaire, RIB, numéro de sécurité sociale ou autre donnée nominative ou financière. Le service
+de rendu ne doit pas accéder à la base globale ; il ne reçoit que les données autorisées du
+snapshot et du document concerné.
+Le chiffrement des données personnelles au repos est exigé comme objectif d’architecture,
+mais le choix de la solution, de la gestion des clés, de leur rotation, de leur sauvegarde et de
+leur restauration reste à décider avec le responsable compétent. Les durées de conservation,
+les finalités, les droits des personnes et les obligations légales applicables ne sont pas fixés par
+ce dossier.
+Les données et les gabarits doivent être séparés :
+les libellés de données sont copiés dans le snapshot ;
+les textes de gabarit sont versionnés séparément ;
+3. Moteur de calcul
+4. Sécurité et isolement
+5. Rendu et langues
+
+
+--- PAGE 4 ---
+les documents émis sont monolingues ;
+aucun repli silencieux vers une autre langue n’est autorisé ;
+un libellé obligatoire absent doit provoquer BLOCAGE_LIBELLE_MANQUANT.
+La clé logique de demande retenue est :
+sha256(
+  snapshot_id +
+  langue +
+  type_document +
+  template_id +
+  template_version +
+  policy_id +
+  engine_version +
+  font_manifest_hash
+)
+Cette concaténation ne doit pas être implémentée naïvement. Il faut définir l’enveloppe
+structurée, les types, l’encodage, la normalisation Unicode, l’ordre canonique des champs et la
+version du schéma. Le choix du moteur PDF, des polices, de la politique de chiffres et de la
+régénération strictement identique octet par octet reste ouvert.
+Les identifiants L1 à L18 doivent être transmis uniquement avec leur contenu original, leur titre
+exact et leur statut vérifié. Le développeur ne doit pas reconstituer les registres manquants et
+ne doit pas affecter arbitrairement un texte à un identifiant Lx. L19 doit rester séparé du
+moteur de paie.
+Pour chaque source, transmettre :
+texte original ;
+numéro et date du texte ;
+édition arabe du Journal officiel ;
+page et article concernés ;
+copie conservée et empreinte ;
+traductions séparées ;
+modifications, abrogations et visas ;
+période de validité ;
+date d’enregistrement dans MIZAN ;
+champ d’application ;
+avis du juriste ;
+responsable et date de validation ;
+règles AST liées.
+6. Corpus juridique
+
+
+--- PAGE 5 ---
+En cas d’absence de vérification, inscrire « non vérifié » et non une interprétation.
+Aucune règle de paie complète n’est actuellement activable en production. La matrice des 14
+postes doit être traitée comme une matrice de périmètre et de blocage, non comme un
+ensemble de formules validées.
+Poste
+Statut de transmission
+Salaire de base
+Bloqué : formule absente
+Absences et déductions
+Bloqué : formule absente
+Ancienneté / IEG
+Bloqué : barème absent
+Heures supplémentaires
+Bloqué : règles absentes
+Assiette SS
+Bloqué : rubriques non qualifiées
+SS salariale
+Cible 9 %, sous réserve de validation N1, assiette et arrondi
+SS patronale
+Cible 25 %, sous réserve de validation N1, assiette et arrondi
+SS patronale ANEM
+Bloqué : décision, conditions et chaîne juridique incomplètes
+Assiette IRG
+Bloqué : formule absente
+IRG courant
+Bloqué : algorithme complet absent
+IRG des rappels
+Bloqué : traitement à valider
+Congés et indemnité
+Bloqué : formules absentes
+STC
+Bloqué : règles absentes
+Net et coût employeur
+Bloqué : dépendances et FOS non tranchés
+Les formules provisoires 9 %, 25 % et la formule conditionnelle d’abattement patronal ne sont
+que des cibles de conception ou des tests illustratifs. Elles ne constituent pas des règles
+activées.
+Avant toute modification :
+inventorier le dépôt, les branches, le schéma et les migrations ;
+identifier les règles déjà actives ;
+identifier les données de test ;
+vérifier les sauvegardes et la restauration ;
+comparer les addenda originaux au dossier ;
+préparer un environnement de test séparé ;
+7. Règles de paie actuellement autorisables
+8. Plan de développement
+Phase 0 — Protection
+
+
+--- PAGE 6 ---
+préparer un retour arrière testé.
+Aucun autre dépôt, projet, schéma ou environnement ne doit être modifié sans identification et
+autorisation explicites.
+Livrer :
+contrats temporels ;
+états et transitions ;
+tentatives de calcul ;
+droits inter-dossiers ;
+classification PII ;
+contrôle des messages MQ ;
+manifeste ;
+snapshot ;
+preuve de restauration.
+Critères : refus des accès croisés, correction bitemporelle sans suppression, entrées inchangées
+entre tentatives, impossibilité de modifier un snapshot clôturé et absence de PII dans MQ.
+Livrer :
+AST déclaratif ;
+compilateur ou interpréteur limité aux opérations approuvées ;
+graphe de dépendances ;
+détection des cycles ;
+ordre reproductible ;
+traçabilité par nœud ;
+registre juridique bitemporel ;
+tests sur données synthétiques.
+Une règle non close doit pouvoir être enregistrée avec :
+implementation_autorisee = false
+Le moteur doit la refuser en production.
+Phase 1 — Fondations
+Phase 2 — AST et corpus
+
+
+--- PAGE 7 ---
+Livrer :
+dictionnaires plateforme/dossier ;
+séparation données/gabarits ;
+service de rendu isolé ;
+politiques de langue et de chiffres versionnées ;
+rendus arabe et français à partir de gabarits approuvés ;
+archivage des artefacts ;
+tests RTL ;
+tests d’empreintes.
+L’anglais à portée juridique et la mention relative à une langue non de référence restent bloqués
+jusqu’à décision sur L14.
+Préparer, sans activation automatique :
+rapprochement des déclarations CNAS ;
+connexion à L19 comme base séparée ;
+réallocation analytique rétroactive ;
+interfaces et exports ;
+schémas et tests d’intégration.
+Aucun traitement rétroactif ne doit modifier un snapshot clôturé.
+Les tests doivent être exécutés sur données fictives tant que le corpus et les calculs ne sont pas
+validés.
+accès à un autre dossier ;
+accès direct à un fichier d’un autre dossier ;
+export non autorisé ;
+rendu avec données d’un autre dossier ;
+message MQ contenant une PII ;
+tentative d’utiliser un identifiant comme autorisation.
+Phase 3 — Rendu
+Phase 4 — Modules périphériques
+9. Tests obligatoires
+Tests de sécurité
+
+
+--- PAGE 8 ---
+modification en SAISIE ;
+gel en EN_CALCUL ;
+relance avec entrées identiques ;
+correction après gel ;
+échec empêchant la clôture ;
+clôture en lecture seule ;
+tentative de modification d’un snapshot clôturé.
+correction tardive sans suppression de l’ancienne valeur ;
+interrogation par période métier ;
+interrogation par date de connaissance ;
+chevauchement de versions ;
+paramètre expiré ;
+version de règle différente entre deux périodes.
+libellé manquant ;
+langue non disponible ;
+absence de repli silencieux ;
+modification d’un catalogue sans modification d’une archive ;
+même clé renvoyant le même artefact archivé ;
+politique différente produisant une clé différente ;
+rendu arabe RTL ;
+métadonnées variables ;
+empreinte différente après modification de l’artefact.
+source N1 absente ;
+source repérée mais non validée ;
+règle sans arrondi défini ;
+règle sans période d’effet ;
+dépendance circulaire ;
+règle expirée ;
+Tests de cycle
+Tests de temporalité
+Tests de rendu
+Tests de corpus et règles
+
+
+--- PAGE 9 ---
+décision ANEM divergente ;
+tentative d’injecter manuellement un résultat certifié.
+Le développeur ne doit pas trancher lui-même les sujets suivants :
+contenu complet et statut des addenda ;
+titres et contenu exacts des registres L1 à L18 ;
+assiette CNAS ;
+assiette IRG ;
+rubriques exclues ou incluses ;
+arrondis et précision ;
+traitement du fonds des œuvres sociales ;
+coût employeur ;
+barème et traitement opérationnel de l’IRG ;
+traitement fiscal des rappels ;
+validité temporelle des dispositifs ANEM ;
+conditions des décisions individuelles ;
+langues de référence et mentions L14 ;
+gabarits de bulletin et de certificat ;
+remise électronique du bulletin ;
+formats officiels des déclarations ;
+formats bancaires ;
+rôles exacts et propriété des dossiers ;
+hébergement, stockage, résidence des données ;
+conservation et restauration ;
+politique de chiffrement et gestion des clés ;
+jeux de résultats attendus validés par un professionnel de la paie.
+Tout point non défini doit rester explicitement marqué :
+A_DECIDER
+10. Points bloquants avant production
+
+
+--- PAGE 10 ---
+Transmettre les éléments dans l’ordre suivant :
+1. Cette note de couverture et les statuts de preuve.
+2. L’index de traçabilité des décisions.
+3. Le corpus original et les registres L1 à L18.
+4. Les addenda originaux, avec versions corrigées et errata.
+5. L’architecture technique.
+6. Le modèle de données logique, sans imposer de schéma SQL non validé.
+7. Le plan d’implémentation et les portes de validation.
+8. La matrice des 14 postes avec leurs statuts.
+9. Les tests sur données synthétiques.
+10. Le registre des points non décidés.
+11. L’audit contradictoire comme document de contrôle, non comme spécification
+supplémentaire.
+Les documents rétractés ou remplacés doivent être clairement marqués et ne doivent pas être
+transmis comme références indépendantes. Le protocole de rétroactivité confidentiel et
+l’annexe de benchmark doivent rester séparés et ne doivent pas être transmis sans autorisation
+de leur émetteur.
+Ne complétez aucun point marqué A_DECIDER, BLOQUE, A_DOCUMENTER ou NON_VERIFIE par
+intuition.
+Ne transformez aucune source repérée en règle active sans validation du texte
+applicable.
+Ne modifiez aucun dépôt, schéma, environnement, donnée ou archive existante sans
+identification et autorisation explicites.
+Remontez chaque écart sous forme de question documentée.
+Développez d’abord le socle, les contrôles, les snapshots, les tests et les blocages sur
+données fictives.
+Aucune paie de production ne doit être activée avant validation juridique, métier,
+technique, sécuritaire et tests dorés.
+11. Dossier à transmettre
+Instruction finale au développeur
+
+
