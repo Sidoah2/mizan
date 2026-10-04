@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
     '.css': 'text/css; charset=utf-8',
@@ -19,6 +19,13 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
     let reqUrl = req.url.split('?')[0];
+
+    // Instant health check for Render port scanner & load balancer
+    if (reqUrl === '/api/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ status: 'healthy', service: 'MIZAN SaaS Engine' }));
+        return;
+    }
 
     // Reverse proxy API calls to Python FastAPI backend (port 8000)
     if (req.url.startsWith('/api/')) {
@@ -69,7 +76,7 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, '127.0.0.1', () => {
     console.log(`SYNCRA Local Server is running successfully at: http://localhost:${PORT}`);
     console.log(`Document Contract available at: http://localhost:${PORT}/contrat_mizan.html`);
 });
