@@ -6,3 +6,4 @@ pillow
 PyMuPDF
 easyocr
 scikit-learn
+python-multipart
