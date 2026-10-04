@@ -5,6 +5,4 @@ services:
     plan: free
     dockerfilePath: Dockerfile
     healthCheckPath: /api/health
-    envVars:
-      - key: PORT
-        value: 3000
+

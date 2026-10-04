@@ -20,10 +20,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose ports
-EXPOSE 3000
+EXPOSE 10000
 
 # Environment variables
-ENV PORT=3000
+ENV PORT=10000
 ENV PYTHONUNBUFFERED=1
 
 # Start Python FastAPI backend in background and Node server in foreground
