@@ -76,17 +76,25 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-    console.log(`SYNCRA Local Server is running successfully at: http://localhost:${PORT}`);
-    console.log(`Document Contract available at: http://localhost:${PORT}/contrat_mizan.html`);
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`SYNCRA Server is running successfully on 0.0.0.0:${PORT}`);
+    console.log(`Document Contract available at: http://0.0.0.0:${PORT}/contrat_mizan.html`);
 });
+
+if (String(PORT) !== '10000') {
+    try {
+        const server10000 = http.createServer(server.listeners('request')[0]);
+        server10000.listen(10000, '0.0.0.0', () => {
+            console.log('SYNCRA Secondary listener active on 0.0.0.0:10000');
+        });
+    } catch (err) {
+        console.log('Port 10000 listener note:', err.message);
+    }
+}
 
 server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-        const ALT_PORT = 3001;
-        server.listen(ALT_PORT, '127.0.0.1', () => {
-            console.log(`Port ${PORT} was busy. Server started on: http://localhost:${ALT_PORT}`);
-        });
+        console.log(`Port ${PORT} busy, retrying...`);
     } else {
         console.error('Server error:', err);
     }
