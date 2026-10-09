@@ -95,7 +95,7 @@ class RAGQueryRequest(BaseModel):
     top_k: Optional[int] = 3
 
 class CycleStatusRequest(BaseModel):
-    tenant_id: str = "TENT-DZ-40492-629"
+    tenant_id: str = ""
     month: int = 10
     year: int = 2026
     status: str = "SAISIE"
@@ -505,7 +505,7 @@ def get_all_articles():
 # ----------------- PAYROLL CYCLE LIFECYCLE PERSISTENCE ----------------- #
 
 @app.get("/api/cycles/current")
-def get_current_cycle(tenant_id: str = Query("TENT-DZ-40492-629"), month: int = 10, year: int = 2026):
+def get_current_cycle(tenant_id: str = Query(""), month: int = 10, year: int = 2026):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""

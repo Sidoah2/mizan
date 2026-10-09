@@ -341,23 +341,6 @@
             return `<th class="col-m ${isCur ? 'current-m' : ''}" data-period="${p}" style="cursor:pointer;" title="${esc(mName)} ${year}">${mNum}${isCur ? ' ▼' : ''}</th>`;
         }).join('');
 
-        // Task rows for this year
-        const taskRows = [
-            { id: 'bulletins', label: t('tasksBulletins'), icon: 'fa-file-invoice-dollar' },
-            { id: 'virements', label: t('tasksVirements'), icon: 'fa-money-bill-transfer' },
-            { id: 'declarations', label: t('tasksDeclarations'), icon: 'fa-building-shield' }
-        ];
-        const taskHtml = taskRows.map((r) => {
-            const dots = periods.map((p) => {
-                const st = (S.data && S.data.tasks && S.data.tasks[r.id] && S.data.tasks[r.id][p]) || 'FUTUR';
-                return dotHtml('task', r.id, p, { status: st }, r.label);
-            }).join('');
-            return `<tr>
-                <td class="cell-name"><i class="fa-solid ${r.icon}" style="color:#0284c7;width:18px"></i> <strong>${esc(r.label)}</strong></td>
-                ${dots}
-            </tr>`;
-        }).join('');
-
         // Employee rows for this year (Real SQLite Records)
         const emps = visibleEmployees();
         let empHtml = '';
@@ -381,8 +364,6 @@
         }
 
         const yearLabel = (typeof t('exerciceTitle') === 'function') ? t('exerciceTitle')(year) : `Exercice ${year} — (12 Mois)`;
-        const taskLabel = (typeof t('taskSectionYear') === 'function') ? t('taskSectionYear')(year) : `${t('taskSection')} (${year})`;
-        const empLabel = (typeof t('empSectionYear') === 'function') ? t('empSectionYear')(year) : `${t('empSection')} (${year})`;
 
         return `
         <div class="silae-year-grid-card" data-year="${year}">
@@ -403,23 +384,6 @@
                             ${thCols}
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="silae-row-category">
-                            <td colspan="13" style="text-align:left">
-                                <i class="fa-solid fa-list-check"></i> <span>${esc(taskLabel)}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        ${taskHtml}
-                    </tbody>
-                    <tbody>
-                        <tr class="silae-row-category">
-                            <td colspan="13" style="text-align:left">
-                                <i class="fa-solid fa-users"></i> <span>${esc(empLabel)}</span>
-                            </td>
-                        </tr>
-                    </tbody>
                     <tbody>
                         ${empHtml}
                     </tbody>

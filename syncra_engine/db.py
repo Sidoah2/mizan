@@ -454,74 +454,7 @@ def migrate_db():
     )
     """)
 
-    # Seed Sample Data for New Modules if empty
-    cursor.execute("SELECT COUNT(*) FROM absences")
-    if cursor.fetchone()[0] == 0:
-        sample_absences = [
-            ('ABS-001', 'TENT-DZ-001', 'EMP-001', 'ANNUAL_LEAVE', '2026-10-12', '2026-10-15', 4.0, 'عطلة سنوية مجدولة', '', 'PENDING', '', None, 'طلب في الانتظار'),
-            ('ABS-002', 'TENT-DZ-001', 'EMP-002', 'MATERNITY', '2026-09-01', '2026-11-28', 88.0, 'عطلة أمومة قانونية مدفوعة', '', 'APPROVED', 'المدير العام', '2026-08-25', 'معتمدة'),
-            ('ABS-003', 'TENT-DZ-001', 'EMP-003', 'FAMILY_EVENT', '2026-10-05', '2026-10-07', 3.0, 'مناسبة عائلية (زواج)', '', 'APPROVED', 'مسؤول الموارد البشرية', '2026-10-04', 'معتمدة قانوناً (3 أيام)'),
-            ('ABS-004', 'TENT-DZ-001', 'EMP-004', 'UNPAID', '2026-10-18', '2026-10-19', 2.0, 'غياب لظرف شخصي خاص', '', 'PENDING', '', None, 'ينتظر مصادقة المدير N+1'),
-            ('ABS-005', 'TENT-DZ-001', 'EMP-005', 'SICK', '2026-10-02', '2026-10-04', 3.0, 'عطلة مرضية عادية مع شهادة طبية', '', 'APPROVED', 'طبيب العمل', '2026-10-03', 'مودعة خلال 48 ساعة')
-        ]
-        cursor.executemany("""
-        INSERT INTO absences (id, tenant_id, employee_id, type, start_date, end_date, days_count, reason, document_url, status, approved_by, approved_at, notes)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, sample_absences)
 
-    cursor.execute("SELECT COUNT(*) FROM employee_hours")
-    if cursor.fetchone()[0] == 0:
-        sample_hours = [
-            ('HRS-001', 'TENT-DZ-001', 'EMP-001', 2026, 10, 173.33, 12.0, 4.0, 0.0, 8.0, 'ساعات إضافية لتسليم مشروع برمجي'),
-            ('HRS-002', 'TENT-DZ-001', 'EMP-002', 2026, 10, 173.33, 0.0, 0.0, 0.0, 0.0, 'دوام إداري عادي'),
-            ('HRS-003', 'TENT-DZ-001', 'EMP-003', 2026, 10, 173.33, 8.0, 0.0, 0.0, 0.0, 'إقفال حسابات الثلاثي الثالث'),
-            ('HRS-004', 'TENT-DZ-001', 'EMP-004', 2026, 10, 173.33, 16.0, 8.0, 0.0, 0.0, 'حملة تسويقية خريفية'),
-            ('HRS-005', 'TENT-DZ-001', 'EMP-005', 2026, 10, 173.33, 10.0, 6.0, 8.0, 8.0, 'صيانة ليلية للخوادم والشبكات')
-        ]
-        cursor.executemany("""
-        INSERT INTO employee_hours (id, tenant_id, employee_id, year, month, regular_hours, hs_50, hs_100, night_hours, holiday_hours, notes)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, sample_hours)
-
-    cursor.execute("SELECT COUNT(*) FROM medical_visits")
-    if cursor.fetchone()[0] == 0:
-        sample_visits = [
-            ('MED-001', 'TENT-DZ-001', 'EMP-001', 'PERIODIQUE', '2026-11-15', '', 'د. سمير شريفي', 'مركز طب العمل باب الزوار', 'APTE', '2027-11-15', 'SCHEDULED', 'فحص دوري سنوي منتظم'),
-            ('MED-002', 'TENT-DZ-001', 'EMP-002', 'REPRISE', '2026-12-01', '', 'د. أمينة قاسي', 'مصلحة طب العمل العاصمة', 'APTE', '2027-12-01', 'SCHEDULED', 'فحص استئناف العمل بعد عطلة الأمومة'),
-            ('MED-003', 'TENT-DZ-001', 'EMP-003', 'PERIODIQUE', '2026-06-10', '2026-06-10', 'د. سمير شريفي', 'مركز طب العمل باب الزوار', 'APTE', '2027-06-10', 'COMPLETED', 'لائق طبياً بدون تحفظ'),
-            ('MED-004', 'TENT-DZ-001', 'EMP-004', 'EMBAUCHE', '2023-06-05', '2023-06-05', 'د. كمال حليمي', 'عيادة الفحص الوظيفي', 'APTE', '2024-06-05', 'COMPLETED', 'فحص التوظيف الأولي - لائق'),
-            ('MED-005', 'TENT-DZ-001', 'EMP-005', 'PERIODIQUE', '2026-10-01', '', 'د. سمير شريفي', 'مركز طب العمل باب الزوار', 'APTE_RESTRICTIONS', '2027-04-01', 'OVERDUE', 'متأخر - يستوجب تجديد الفحص الدوري')
-        ]
-        cursor.executemany("""
-        INSERT INTO medical_visits (id, tenant_id, employee_id, visit_type, scheduled_date, completed_date, doctor_name, medical_center, fitness_status, next_visit_date, status, notes)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, sample_visits)
-
-    cursor.execute("SELECT COUNT(*) FROM job_templates")
-    if cursor.fetchone()[0] == 0:
-        sample_templates = [
-            ('TPL-001', 'TENT-DZ-001', 'إطار مسير / مدير مشروع (Cadre)', 'الإدارة العامة', 'CDI', 95000.0, 5000.0, 6000.0, 10000.0, 'نموذج الإطارات والمديرين التنفيذيين'),
-            ('TPL-002', 'TENT-DZ-001', 'مهندس برمجيات وتطوير (Ingénieur)', 'تكنولوجيا المعلومات', 'CDI', 80000.0, 4000.0, 5000.0, 8000.0, 'نموذج المهندسين والخبراء التقنيين'),
-            ('TPL-003', 'TENT-DZ-001', 'محاسب / تقني سامي (Agent de Maîtrise)', 'المالية والمحاسبة', 'CDI', 55000.0, 3500.0, 4500.0, 5000.0, 'نموذج أعوان التحكم والتقنيين السامين'),
-            ('TPL-004', 'TENT-DZ-001', 'عامل مهني مؤهل (Ouvrier Qualifié)', 'الإنتاج والتشغيل', 'CDI', 42000.0, 3000.0, 4000.0, 3000.0, 'نموذج العمال المؤهلين والخدمات اللوجستية'),
-            ('TPL-005', 'TENT-DZ-001', 'مساعد إداري مبتدئ (CTA / ANEM)', 'الإدارة', 'ANEM_CTA', 35000.0, 3000.0, 3500.0, 2000.0, 'نموذج عقود دعم التشغيل المبتدئة')
-        ]
-        cursor.executemany("""
-        INSERT INTO job_templates (id, tenant_id, title, department, contract_type, default_salary, transport, basket, bonus, description)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, sample_templates)
-
-    cursor.execute("SELECT COUNT(*) FROM annual_evaluations")
-    if cursor.fetchone()[0] == 0:
-        sample_evals = [
-            ('EVL-001', 'TENT-DZ-001', 'EMP-001', 'المدير التنفيذي', 2025, 94, 'تحقيق كامل أهداف المنصة البرمجية وتطوير المحرك بنجاح', 'كفاءة تقنية استثنائية والتزام عالي بالسلامة الرقمية', 'تعزيز التنسيق مع فريق التحليل المالي', 'COMPLETED'),
-            ('EVL-002', 'TENT-DZ-001', 'EMP-002', 'المدير العام', 2025, 91, 'إنجاز دورات الأجور وتصاريح CNAS بنسبة دقة 100%', 'تنظيم محكم لملفات الموظفين واستقبال النزاعات الإدارية', 'متابعة أتمتة سجلات طب العمل', 'COMPLETED'),
-            ('EVL-003', 'TENT-DZ-001', 'EMP-003', 'مسؤولة الموارد البشرية', 2025, 88, 'مراجعة الميزانية السنوية ومخالصات STC دون تأخير', 'دقة حسابية عالية وضبط حسابات الضرائب IRG', 'مواصلة التدريب على المعايير المحاسبية المحدثة', 'COMPLETED')
-        ]
-        cursor.executemany("""
-        INSERT INTO annual_evaluations (id, tenant_id, employee_id, evaluator_name, evaluation_year, score_percentage, objectives_achieved, strengths, improvements, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, sample_evals)
 
     conn.commit()
     conn.close()
