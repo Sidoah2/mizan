@@ -289,11 +289,17 @@
 
     async function loadTenants() {
         try {
-            const data = await api('/api/tenants');
-            if (Array.isArray(data) && data.length) {
+            let userEmail = '';
+            try {
+                const s = JSON.parse(localStorage.getItem('syncra_user_session') || sessionStorage.getItem('syncra_user_session') || 'null');
+                if (s && s.email) userEmail = s.email;
+            } catch (err) { }
+            const url = userEmail ? `/api/tenants?email=${encodeURIComponent(userEmail)}` : '/api/tenants';
+            const data = await api(url);
+            if (Array.isArray(data)) {
                 S.tenants = data;
                 if (!data.some((x) => x.id === S.tenantId)) {
-                    S.tenantId = data[0].id;
+                    S.tenantId = data.length ? data[0].id : '';
                     localStorage.setItem('syncra_active_tenant_id', S.tenantId);
                 }
             }

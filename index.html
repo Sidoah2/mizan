@@ -2242,12 +2242,10 @@
                 <div class="silae-window-controls">
                     <!-- Segmented Dual Locale Switcher (FR / AR) -->
                     <div class="silae-locale-switcher">
-                        <button type="button" class="locale-btn" data-locale="fr"
-                            onclick="window.setLanguage('fr')">
+                        <button type="button" class="locale-btn" data-locale="fr" onclick="window.setLanguage('fr')">
                             FR
                         </button>
-                        <button type="button" class="locale-btn" data-locale="ar"
-                            onclick="window.setLanguage('ar')">
+                        <button type="button" class="locale-btn" data-locale="ar" onclick="window.setLanguage('ar')">
                             عربي
                         </button>
                     </div>
@@ -2293,7 +2291,8 @@
                 <button type="button" class="appbar-nav-item" data-tab="view-absences"
                     onclick="switchSaaSTab('view-absences')">
                     <i class="fa-solid fa-calendar-check" style="color: #fbbf24;"></i>
-                    <span><span data-i18n="navAbsences">Absences & Congés</span> <span id="navAbsencesPendingBadge" class="badge badge-warning"
+                    <span><span data-i18n="navAbsences">Absences & Congés</span> <span id="navAbsencesPendingBadge"
+                            class="badge badge-warning"
                             style="display: none; padding: 2px 6px; font-size: 0.72rem; margin-inline-start: 4px;">0</span></span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-stc" onclick="switchSaaSTab('view-stc')">
@@ -2606,7 +2605,8 @@
                                 <i class="fa-solid fa-address-card text-success"></i>
                                 <span data-i18n="salariesTitle">Dossier Salariés & Contrats</span>
                             </h3>
-                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;" data-i18n="salariesSub">
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;"
+                                data-i18n="salariesSub">
                                 Gestion des salariés, salaire de base, primes et coordonnées bancaires (SQLite).
                             </p>
                         </div>
@@ -2623,7 +2623,8 @@
                             </button>
                             <button type="button" class="btn btn-secondary" onclick="exportEmployeesCsv()"
                                 title="Exporter CSV">
-                                <i class="fa-solid fa-file-excel text-success"></i> <span data-i18n="btnExporter">Exporter CSV</span>
+                                <i class="fa-solid fa-file-excel text-success"></i> <span
+                                    data-i18n="btnExporter">Exporter CSV</span>
                             </button>
                         </div>
                     </div>
@@ -2633,25 +2634,29 @@
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #f1f5f9;">
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #0284c7;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiTotalEmp">Total Salariés Enregistrés</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"
+                                data-i18n="kpiTotalEmp">Total Salariés Enregistrés</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-top: 2px;"
                                 id="dossierCountTotal">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #16a34a;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiCdi">Contrats CDI</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"
+                                data-i18n="kpiCdi">Contrats CDI</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #16a34a; margin-top: 2px;"
                                 id="dossierCountCdi">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiCdd">Autres Contrats (CDD / ANEM)</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"
+                                data-i18n="kpiCdd">Autres Contrats (CDD / ANEM)</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #d97706; margin-top: 2px;"
                                 id="dossierCountCdd">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiBaseMass">Masse Salariale Base</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;"
+                                data-i18n="kpiBaseMass">Masse Salariale Base</span>
                             <div style="font-size: 1.25rem; font-weight: 900; color: #6d28d9; margin-top: 2px;"
                                 id="dossierTotalBase">0 DA</div>
                         </div>
@@ -2695,7 +2700,8 @@
                                 <i class="fa-solid fa-user-plus text-success"></i>
                                 <span data-i18n="addEmpTitle">Fiche Nouveau Salarié</span>
                             </h3>
-                            <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 3px;" data-i18n="addEmpSub">
+                            <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 3px;"
+                                data-i18n="addEmpSub">
                                 Fiche salarié, contrat de travail, salaire de base et coordonnées bancaires (SQLite).
                             </p>
                         </div>
@@ -2704,7 +2710,8 @@
                     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                         <button type="submit" form="formScreenAddEmployee" class="btn btn-primary"
                             id="btnSaveScreenEmployee">
-                            <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="btnSaveEmp">Enregistrer le Salarié</span>
+                            <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="btnSaveEmp">Enregistrer le
+                                Salarié</span>
                         </button>
                     </div>
                 </div>
@@ -4299,7 +4306,8 @@
                         <div>
                             <div style="display: flex; align-items: center; gap: 8px;">
                                 <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0;">
-                                    <i class="fa-solid fa-scale-balanced text-primary"></i> <span data-i18n="ragTitle">Conseil Juridique & Réglementaire (IA)</span>
+                                    <i class="fa-solid fa-scale-balanced text-primary"></i> <span
+                                        data-i18n="ragTitle">Conseil Juridique & Réglementaire (IA)</span>
                                 </h3>
                                 <span class="rag-status-pill">
                                     <i class="fa-solid fa-scale-balanced"></i> النظام التشريعي المعتمد N1
@@ -4398,7 +4406,8 @@
                     <div class="table-card-header">
                         <div>
                             <h3 style="font-size: 1.25rem; font-weight: 800;">
-                                <i class="fa-solid fa-file-medical text-primary"></i> <span data-i18n="ocrTitle">Gestion des Congés & Arrêts Maladie (OCR)</span>
+                                <i class="fa-solid fa-file-medical text-primary"></i> <span data-i18n="ocrTitle">Gestion
+                                    des Congés & Arrêts Maladie (OCR)</span>
                             </h3>
                             <p style="font-size: 0.85rem; color: var(--text-muted);">
                                 تسجيل وتدقيق شهادات التوقف عن العمل (Arrêt de travail) وبطاقات الضمان الاجتماعي مع
@@ -4620,7 +4629,8 @@
                     <div class="table-card-header">
                         <div>
                             <h3 style="font-size: 1.25rem; font-weight: 800;">
-                                <i class="fa-solid fa-handshake-slash text-warning"></i> <span data-i18n="stcTitle">Solde Tout Compte (STC)</span>
+                                <i class="fa-solid fa-handshake-slash text-warning"></i> <span
+                                    data-i18n="stcTitle">Solde Tout Compte (STC)</span>
                             </h3>
                             <p style="font-size: 0.85rem; color: var(--text-muted);">
                                 الحساب القانوني القطعي لتسوية مستحقات الأجير المغادر وفق القانون 90-11 مع إصدار وصل
@@ -4789,7 +4799,8 @@
             <section id="view-settings" class="saas-view-section">
                 <div style="margin-bottom: 24px;">
                     <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">
-                        <i class="fa-solid fa-gear text-primary"></i> <span data-i18n="settingsTitle">Paramètres & Configuration</span>
+                        <i class="fa-solid fa-gear text-primary"></i> <span data-i18n="settingsTitle">Paramètres &
+                            Configuration</span>
                     </h2>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
                         تخصيص لغة النظام، مظهر الواجهة، هوية المؤسسة والمستأجر، وإدارة الجلسة وصلاحيات المستخدمين.
@@ -5045,7 +5056,8 @@
                 <div class="saas-banner">
                     <div>
                         <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">
-                            <i class="fa-solid fa-calendar-check text-warning"></i> <span data-i18n="absencesTitle">Absences & Congés</span>
+                            <i class="fa-solid fa-calendar-check text-warning"></i> <span
+                                data-i18n="absencesTitle">Absences & Congés</span>
                         </h3>
                         <p style="font-size: 0.88rem; color: var(--text-muted);">
                             تسجيل نشاط الشهر وغيابات الموظفين الفردية والجماعية مع مسار اعتماد المديرين N+1 وحساب الأثر
@@ -5149,7 +5161,8 @@
                 <div class="saas-banner">
                     <div>
                         <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">
-                            <i class="fa-solid fa-file-excel text-success"></i> <span data-i18n="importExportTitle">Centre Import / Export</span>
+                            <i class="fa-solid fa-file-excel text-success"></i> <span
+                                data-i18n="importExportTitle">Centre Import / Export</span>
                         </h3>
                         <p style="font-size: 0.88rem; color: var(--text-muted);">
                             محرك الاستيراد السحابي المتكامل للبيانات الجماعية (الموظفون، المتغيرات الشهرية EVP،
@@ -7066,6 +7079,9 @@
             try {
                 init();
                 await loadTenantsFromBackend();
+                if (window.SilaeEngine && typeof window.SilaeEngine.loadTenants === 'function') {
+                    await window.SilaeEngine.loadTenants();
+                }
                 if (typeof populateStcEmployeeSelect === 'function') populateStcEmployeeSelect();
                 if (typeof populateAtsEmployeeSelect === 'function') populateAtsEmployeeSelect();
                 if (typeof populateOcrEmployeeSelect === 'function') populateOcrEmployeeSelect();
@@ -7140,6 +7156,9 @@
                     try {
                         init();
                         await loadTenantsFromBackend();
+                        if (window.SilaeEngine && typeof window.SilaeEngine.loadTenants === 'function') {
+                            await window.SilaeEngine.loadTenants();
+                        }
                         if (typeof populateStcEmployeeSelect === 'function') populateStcEmployeeSelect();
                         if (typeof populateAtsEmployeeSelect === 'function') populateAtsEmployeeSelect();
                         if (typeof populateOcrEmployeeSelect === 'function') populateOcrEmployeeSelect();
@@ -7167,6 +7186,8 @@
         function handleUserLogout() {
             localStorage.removeItem('syncra_user_session');
             sessionStorage.removeItem('syncra_user_session');
+            localStorage.removeItem('syncra_active_tenant_id');
+            sessionStorage.removeItem('syncra_active_tenant_id');
             currentUserSession = null;
             document.documentElement.classList.add('not-authenticated');
 
@@ -9153,18 +9174,26 @@
 
         async function loadTenantsFromBackend() {
             try {
-                const resp = await syncraApiFetch('/api/tenants');
+                let userEmail = (currentUserSession && currentUserSession.email) || '';
+                if (!userEmail) {
+                    try {
+                        const s = JSON.parse(localStorage.getItem('syncra_user_session') || sessionStorage.getItem('syncra_user_session') || 'null');
+                        if (s && s.email) userEmail = s.email;
+                    } catch (err) { }
+                }
+                const url = userEmail ? `/api/tenants?email=${encodeURIComponent(userEmail)}` : '/api/tenants';
+                const resp = await syncraApiFetch(url);
                 const tenants = await resp.json();
-                if (Array.isArray(tenants) && tenants.length > 0) {
+                if (Array.isArray(tenants)) {
                     currentTenantsList = tenants;
                     const savedId = localStorage.getItem('syncra_active_tenant_id');
                     if (savedId && tenants.some(t => t.id === savedId)) {
                         currentTenantId = savedId;
                     } else {
-                        currentTenantId = tenants[0].id;
+                        currentTenantId = tenants.length > 0 ? tenants[0].id : '';
                         localStorage.setItem('syncra_active_tenant_id', currentTenantId);
                     }
-                    const activeTenant = tenants.find(t => t.id === currentTenantId) || tenants[0];
+                    const activeTenant = tenants.find(t => t.id === currentTenantId) || (tenants.length > 0 ? tenants[0] : null);
                     if (activeTenant) {
                         populateSettingsCompanyForm(activeTenant);
                     }

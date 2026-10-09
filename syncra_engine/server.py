@@ -270,10 +270,13 @@ def health_check():
 # ----------------- TENANTS MANAGEMENT ----------------- #
 
 @app.get("/api/tenants")
-def get_tenants():
+def get_tenants(email: Optional[str] = Query(None)):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM tenants ORDER BY created_at ASC")
+    if email and email.strip():
+        cursor.execute("SELECT * FROM tenants WHERE LOWER(TRIM(email)) = LOWER(?) ORDER BY created_at ASC", (email.strip(),))
+    else:
+        cursor.execute("SELECT * FROM tenants ORDER BY created_at ASC")
     rows = cursor.fetchall()
     conn.close()
     return [dict(r) for r in rows]
