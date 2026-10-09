@@ -13,19 +13,27 @@
     --silae-surface: #ffffff;
     --silae-border: #cbd5e1;
     --silae-border-light: #e2e8f0;
-    
+
     /* Interactive Dot Colors */
-    --dot-cloture: #16a34a;       /* 🟢 Clôturé / Validé */
-    --dot-encours: #2563eb;       /* 🔵 En cours / Saisie */
-    --dot-acalculer: #dc2626;     /* 🔴 À calculer / Retard */
-    --dot-futur: #cbd5e1;         /* ⚪ Futur / Non démarré */
+    --dot-cloture: #16a34a;
+    /* 🟢 Clôturé / Validé */
+    --dot-encours: #2563eb;
+    /* 🔵 En cours / Saisie */
+    --dot-acalculer: #dc2626;
+    /* 🔴 À calculer / Retard */
+    --dot-futur: #cbd5e1;
+    /* ⚪ Futur / Non démarré */
     --dot-futur-border: #94a3b8;
 }
 
 /* ==========================================================================
    00. COMPLETE SUPPRESSION OF LEGACY SIDEBAR AND FULL-WIDTH LAYOUT
    ========================================================================== */
-.sidebar, #appSidebar, .app-topbar, .sidebar-backdrop, .sidebar-toggle-btn {
+.sidebar,
+#appSidebar,
+.app-topbar,
+.sidebar-backdrop,
+.sidebar-toggle-btn {
     display: none !important;
 }
 
@@ -43,214 +51,334 @@
    ========================================================================== */
 .silae-master-header {
     width: 100%;
-    background: #ffffff;
-    border-bottom: 2px solid var(--silae-blue);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #090e1a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.45);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
-/* Row 1: Window Bar */
+/* Row 1: Window & Utility Bar */
 .silae-window-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #0f172a;
+    background: linear-gradient(180deg, #070b14 0%, #0c1322 100%);
     color: #f8fafc;
-    padding: 7px 20px;
-    font-size: 0.82rem;
-    gap: 14px;
+    padding: 9px 24px;
+    font-size: 0.84rem;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .silae-brand-section {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .silae-logo-text {
     font-size: 1.15rem;
-    font-weight: 900;
+    font-weight: 800;
     letter-spacing: -0.02em;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     color: #ffffff;
+    user-select: none;
 }
 
 .silae-logo-text span.brand-accent {
+    background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.silae-logo-text .brand-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 2px 7px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    margin-inline-start: 4px;
 }
 
-.silae-traffic-lights {
+/* Live Operational Engine Status Pill */
+.silae-engine-status {
     display: inline-flex;
-    gap: 5px;
     align-items: center;
+    gap: 7px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    color: #4ade80;
+    user-select: none;
+    transition: all 0.2s ease;
 }
 
-.silae-traffic-lights .t-dot {
-    width: 8px;
-    height: 8px;
+.silae-engine-status:hover {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: rgba(34, 197, 94, 0.35);
+}
+
+.status-pulse-dot {
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+    animation: statusPulse 2s infinite ease-in-out;
 }
-.silae-traffic-lights .t-green { background: #22c55e; }
-.silae-traffic-lights .t-red { background: #ef4444; }
 
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.85);
+    }
+}
+
+/* Modern Tenant Switcher */
 .silae-top-tenant-selector {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: #1e293b;
-    padding: 4px 12px;
-    border-radius: 6px;
-    border: 1px solid #334155;
+    gap: 9px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 6px 4px 12px;
+    border-radius: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.silae-top-tenant-selector:hover,
+.silae-top-tenant-selector:focus-within {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
 }
 
 .silae-top-tenant-selector select {
     background: transparent;
     border: none;
-    color: #f8fafc;
-    font-size: 0.8rem;
+    color: #f1f5f9;
+    font-size: 0.82rem;
     font-weight: 700;
     outline: none;
     cursor: pointer;
+    min-width: 190px;
+    padding: 2px 0;
 }
 
 .silae-top-tenant-selector select option {
     background: #0f172a;
     color: #f8fafc;
+    padding: 8px;
 }
 
 .btn-top-add-tenant {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #0284c7;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    padding: 5px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    padding: 5px 13px;
     font-size: 0.78rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
 }
 
 .btn-top-add-tenant:hover {
-    background: #0369a1;
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
     transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45);
 }
 
 .silae-window-controls {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* Dual Locale Switcher Button */
+/* iOS/Linear Style Segmented Locale Switcher */
 .silae-locale-switcher {
     display: flex;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 6px;
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+    user-select: none;
 }
 
 .locale-btn {
-    padding: 4px 10px;
+    padding: 4px 12px;
     background: transparent;
     border: none;
+    border-radius: 6px;
     color: #94a3b8;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 700;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.18s ease;
 }
 
 .locale-btn:hover {
-    color: #ffffff;
-    background: #334155;
+    color: #f8fafc;
 }
 
 .locale-btn.active {
     background: #0284c7;
     color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* User & Logout */
+/* User Profile Badge & Logout */
 .silae-user-badge {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: #cbd5e1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 3px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-avatar-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
 }
 
 .btn-silae-logout {
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
     color: #fca5a5;
     padding: 4px 9px;
-    border-radius: 4px;
-    font-size: 0.74rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-silae-logout:hover {
     background: #ef4444;
     color: #ffffff;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   02. THE TOP APP BAR NAVIGATION (REPLACING THE SIDEBAR COMPLETELY!)
+   02. THE TOP APP BAR NAVIGATION (MODERN PILL-TABS - NO SCROLLBAR)
    ========================================================================== */
 .silae-appbar-nav {
     display: flex;
     align-items: center;
-    background: #1e293b;
-    padding: 0 16px;
-    gap: 3px;
+    background: #090e1a;
+    padding: 6px 20px;
+    gap: 5px;
     overflow-x: auto;
-    border-top: 1px solid #334155;
-    border-bottom: 2px solid #0284c7;
     white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE / Edge */
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.silae-appbar-nav::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+    height: 0;
+    width: 0;
 }
 
 .appbar-nav-item {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
+    padding: 7px 14px;
     background: transparent;
-    border: none;
-    color: #cbd5e1;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #94a3b8;
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.15s ease;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
+    user-select: none;
+    text-decoration: none;
 }
 
 .appbar-nav-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f1f5f9;
+    border-color: rgba(255, 255, 255, 0.08);
 }
 
 .appbar-nav-item.active {
-    background: rgba(2, 132, 199, 0.25);
+    background: rgba(2, 132, 199, 0.16);
     color: #38bdf8;
-    border-bottom-color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 1px 8px rgba(2, 132, 199, 0.15);
+}
+
+.appbar-nav-item.active i {
+    color: #38bdf8 !important;
 }
 
 .appbar-nav-item i {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    transition: transform 0.18s ease;
+}
+
+.appbar-nav-item:hover i {
+    transform: scale(1.12);
+}
+
+.appbar-nav-item .badge {
+    padding: 2px 7px;
+    font-size: 0.72rem;
+    border-radius: 9999px;
+    font-weight: 700;
 }
 
 /* ==========================================================================
@@ -340,11 +468,26 @@
     flex-shrink: 0;
 }
 
-.legend-pill-dot.dot-all { background: linear-gradient(135deg, #16a34a, #2563eb, #dc2626); }
-.legend-pill-dot.dot-cloture { background: var(--dot-cloture); }
-.legend-pill-dot.dot-encours { background: var(--dot-encours); }
-.legend-pill-dot.dot-acalculer { background: var(--dot-acalculer); }
-.legend-pill-dot.dot-futur { background: var(--dot-futur); border: 1.5px solid var(--dot-futur-border); }
+.legend-pill-dot.dot-all {
+    background: linear-gradient(135deg, #16a34a, #2563eb, #dc2626);
+}
+
+.legend-pill-dot.dot-cloture {
+    background: var(--dot-cloture);
+}
+
+.legend-pill-dot.dot-encours {
+    background: var(--dot-encours);
+}
+
+.legend-pill-dot.dot-acalculer {
+    background: var(--dot-acalculer);
+}
+
+.legend-pill-dot.dot-futur {
+    background: var(--dot-futur);
+    border: 1.5px solid var(--dot-futur-border);
+}
 
 .legend-count-pill {
     font-size: 0.7rem;
@@ -398,10 +541,25 @@
     box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.3);
 }
 
-.painter-btn.p-cloture { background: #dcfce7; color: #16a34a; }
-.painter-btn.p-encours { background: #dbeafe; color: #2563eb; }
-.painter-btn.p-acalculer { background: #fee2e2; color: #dc2626; }
-.painter-btn.p-futur { background: #f1f5f9; color: #64748b; }
+.painter-btn.p-cloture {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.painter-btn.p-encours {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.painter-btn.p-acalculer {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.painter-btn.p-futur {
+    background: #f1f5f9;
+    color: #64748b;
+}
 
 /* Matrix Top Sub-Toolbar */
 .silae-matrix-header-bar {
@@ -658,10 +816,18 @@
 /* ==========================================================================
    07. EN_CALCUL STATUS, SELECTION, RANGE FILTER, CONTEXT MENU, TOAST
    ========================================================================== */
-:root { --dot-encalcul: #f59e0b; }
+:root {
+    --dot-encalcul: #f59e0b;
+}
 
-.legend-pill-dot.dot-encalcul { background: var(--dot-encalcul); }
-.painter-btn.p-encalcul { background: #fef3c7; color: #d97706; }
+.legend-pill-dot.dot-encalcul {
+    background: var(--dot-encalcul);
+}
+
+.painter-btn.p-encalcul {
+    background: #fef3c7;
+    color: #d97706;
+}
 
 .silae-dot.status-encalcul {
     background-color: var(--dot-encalcul);
@@ -674,7 +840,9 @@
     transform: scale(1.2);
 }
 
-.silae-bpa-table.painting .silae-dot[data-emp] { cursor: crosshair; }
+.silae-bpa-table.painting .silae-dot[data-emp] {
+    cursor: crosshair;
+}
 
 .silae-dot-none {
     color: #cbd5e1;
@@ -824,9 +992,22 @@
     animation: ctxIn 0.1s ease-out;
 }
 
-.silae-context-menu.rtl { direction: rtl; text-align: right; }
+.silae-context-menu.rtl {
+    direction: rtl;
+    text-align: right;
+}
 
-@keyframes ctxIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes ctxIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 .silae-context-menu .ctx-title {
     padding: 7px 16px;
@@ -846,7 +1027,11 @@
     letter-spacing: 0.04em;
 }
 
-.silae-context-menu .ctx-sep { height: 1px; background: #cbd5e1; margin: 4px 0; }
+.silae-context-menu .ctx-sep {
+    height: 1px;
+    background: #cbd5e1;
+    margin: 4px 0;
+}
 
 .silae-context-menu .ctx-item {
     display: flex;
@@ -867,10 +1052,23 @@
     outline: 1px solid #99d1ff;
     color: #000000;
 }
-.silae-context-menu .ctx-item.disabled { color: #a8b3c2; cursor: not-allowed; }
-.silae-context-menu .ctx-item.disabled i { color: #cbd5e1; }
-.silae-context-menu .ctx-item.danger i { color: #dc2626; }
-.silae-context-menu .ctx-item.danger:hover:not(.disabled) { background: #fee2e2; }
+
+.silae-context-menu .ctx-item.disabled {
+    color: #a8b3c2;
+    cursor: not-allowed;
+}
+
+.silae-context-menu .ctx-item.disabled i {
+    color: #cbd5e1;
+}
+
+.silae-context-menu .ctx-item.danger i {
+    color: #dc2626;
+}
+
+.silae-context-menu .ctx-item.danger:hover:not(.disabled) {
+    background: #fee2e2;
+}
 
 /* Toast */
 .silae-toast {
@@ -891,9 +1089,18 @@
     transition: all 0.25s ease;
 }
 
-.silae-toast.show { opacity: 1; transform: translateY(0); }
-.silae-toast.ok { background: #15803d; }
-.silae-toast.error { background: #b91c1c; }
+.silae-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.silae-toast.ok {
+    background: #15803d;
+}
+
+.silae-toast.error {
+    background: #b91c1c;
+}
 
 /* ==========================================================================
    07. DEDICATED FULL SCREEN NAVIGATION & HEADERS
@@ -1167,21 +1374,49 @@
     margin-bottom: 4px;
 }
 
-.month-pill-dot.dot-cloture { background-color: var(--dot-cloture); }
-.month-pill-dot.dot-encalcul { background-color: var(--dot-encalcul); }
-.month-pill-dot.dot-encours { background-color: var(--dot-encours); }
-.month-pill-dot.dot-acalculer { background-color: var(--dot-acalculer); }
-.month-pill-dot.dot-futur { background-color: var(--dot-futur); }
+.month-pill-dot.dot-cloture {
+    background-color: var(--dot-cloture);
+}
+
+.month-pill-dot.dot-encalcul {
+    background-color: var(--dot-encalcul);
+}
+
+.month-pill-dot.dot-encours {
+    background-color: var(--dot-encours);
+}
+
+.month-pill-dot.dot-acalculer {
+    background-color: var(--dot-acalculer);
+}
+
+.month-pill-dot.dot-futur {
+    background-color: var(--dot-futur);
+}
 
 /* Slide Animations */
 @keyframes payslipSlideFromLeft {
-    0% { opacity: 0; transform: translateX(-40px); }
-    100% { opacity: 1; transform: translateX(0); }
+    0% {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes payslipSlideFromRight {
-    0% { opacity: 0; transform: translateX(40px); }
-    100% { opacity: 1; transform: translateX(0); }
+    0% {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .payslip-sheet.slide-left {
@@ -1242,11 +1477,30 @@
     flex-shrink: 0;
 }
 
-.kpi-icon-badge.icon-employees { background: rgba(2, 132, 199, 0.12); color: #0284c7; }
-.kpi-icon-badge.icon-brut { background: rgba(16, 185, 129, 0.12); color: #10b981; }
-.kpi-icon-badge.icon-cnas { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
-.kpi-icon-badge.icon-irg { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
-.kpi-icon-badge.icon-net { background: rgba(99, 102, 241, 0.12); color: #6366f1; }
+.kpi-icon-badge.icon-employees {
+    background: rgba(2, 132, 199, 0.12);
+    color: #0284c7;
+}
+
+.kpi-icon-badge.icon-brut {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+}
+
+.kpi-icon-badge.icon-cnas {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.kpi-icon-badge.icon-irg {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+}
+
+.kpi-icon-badge.icon-net {
+    background: rgba(99, 102, 241, 0.12);
+    color: #6366f1;
+}
 
 .kpi-body {
     display: flex;
@@ -1436,5 +1690,3 @@
     border: 1px solid #e2e8f0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
-
-

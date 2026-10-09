@@ -18,86 +18,168 @@
     // ------------------------------ Dictionary ------------------------------
     const I18N = {
         fr: {
-            navBpa: "État d'avancement (BPA)", navDashboard: 'Tableau de bord (Dashboard)',
-            navSalaries: 'Dossier Salarié', navEvp: 'Cycle de Paie (Calcul)',
-            navBulletins: 'Bulletins de paie', navIrg: 'État IRG (G50)',
-            navCnas: 'Déclaration CNAS', navVirement: 'Ordre de virement',
-            navDas: 'Déclaration DAS', navAts: 'Attestation ATS',
-            backToMatrix: 'Retour à la matrice (BPA)',
-            navRag: 'Assistant Juridique (RAG)',
-            navOcr: 'Congés & Maladie (OCR)', navStc: 'Solde Tout Compte (STC)',
-            navSettings: 'Paramètres Dossier',
-            topAddTenant: '+ Entreprise',
-            legendTitle: 'LÉGENDE DES STATUTS :', legendAll: 'Tous les statuts',
-            legendCloture: 'Clôturé (Validé)', legendEnCalcul: 'Calculé (à valider)',
-            legendEnCours: 'En cours (Saisie)', legendACalculer: 'À calculer (Retard)',
-            legendFutur: 'Futur (Non démarré)',
-            painterTitle: 'Pinceau', matrixTitle: "État d'avancement (BPA)",
-            colName: 'Tâches / Salariés', taskSection: 'Tâches Générales',
-            empSection: 'Salariés du dossier (Base réelle SQLite)',
-            tasksBulletins: 'Bulletins de Paie', tasksVirements: 'Virements Bancaires',
-            tasksDeclarations: 'Déclarations Sociales (CNAS)',
-            btnCalculerMois: 'Calculer Mois', btnExporter: 'Exporter CSV',
-            btnJournalPaie: 'Livre de Paie',
-            searchPlaceholder: 'Filtrer salarié ou matricule...',
-            rangeFrom: 'Du', rangeTo: 'Au',
-            presetCurrentYear: '2026 (1 an)',
-            preset2Years: '2025 - 2026 (2 ans)',
-            preset3Years: '2024 - 2026 (3 ans)',
+            navBpa: "État d'avancement (BPA)",
+            navSalaries: "Salariés",
+            navAddSalarie: "+ Nouveau Salarié",
+            navRag: "Conseil Juridique (RAG)",
+            navOcr: "Congés & Maladie (OCR)",
+            navAbsences: "Absences & Congés",
+            navStc: "Solde Tout Compte (STC)",
+            navImportExport: "Centre Import / Export",
+            navSettings: "Paramètres",
+            topAddTenant: "+ Nouvelle Entreprise",
+            userRoleExpert: "Expert Paie",
+            backToMatrix: "Retour à la matrice (BPA)",
+            matrixTitle: "État d'avancement (BPA)",
+            legendTitle: "LÉGENDE DES STATUTS :",
+            legendAll: "Tous les statuts",
+            legendCloture: "Clôturé (Validé)",
+            legendEnCalcul: "Calculé (à valider)",
+            legendEnCours: "En cours (Saisie)",
+            legendACalculer: "À calculer (Retard)",
+            legendFutur: "Futur (Non démarré)",
+            painterTitle: "Pinceau",
+            colName: "Tâches / Salariés",
+            taskSection: "Tâches Générales",
+            empSection: "Salariés du dossier (Base réelle SQLite)",
+            tasksBulletins: "Bulletins de Paie",
+            tasksVirements: "Virements Bancaires",
+            tasksDeclarations: "Déclarations Sociales (CNAS)",
+            btnCalculerMois: "Calculer Mois",
+            btnExporter: "Exporter CSV",
+            btnJournalPaie: "Livre de Paie",
+            searchPlaceholder: "Filtrer salarié ou matricule...",
+            rangeFrom: "Du",
+            rangeTo: "Au",
+            presetCurrentYear: "2026",
+            preset2Years: "2025 - 2026",
+            preset3Years: "2024 - 2026",
             exerciceTitle: (y) => `Exercice ${y} — Année Complète (12 Mois)`,
-            exerciceBadge: '12 Mois (01 — 12)',
+            exerciceBadge: "12 Mois (01 — 12)",
             taskSectionYear: (y) => `Tâches Générales (${y})`,
             empSectionYear: (y) => `Salariés du dossier — Base réelle SQLite (${y})`,
-            statutClotureLabel: '🟢 Clôturé / Validé', statutEnCalculLabel: '🟠 Calculé (à valider)',
-            statutEnCoursLabel: '🔵 En cours (saisie)', statutACalculerLabel: '🔴 À calculer (en retard)',
-            statutFuturLabel: '⚪ Futur (non démarré)', statutNoneLabel: 'Avant embauche',
-            noEmployees: 'Aucun salarié actif dans ce dossier.',
-            noMatch: 'Aucun salarié ne correspond à la recherche.',
-            loadError: 'Impossible de charger la matrice depuis le serveur.',
-            confirmBatch: 'Calculer tous les bulletins du mois',
-            doneChanged: 'cellule(s) mise(s) à jour', doneSkipped: 'ignorée(s)',
-            invalidRange: 'Plage d\'années invalide.'
+            statutClotureLabel: "🟢 Clôturé / Validé",
+            statutEnCalculLabel: "🟠 Calculé (à valider)",
+            statutEnCoursLabel: "🔵 En cours (saisie)",
+            statutACalculerLabel: "🔴 À calculer (en retard)",
+            statutFuturLabel: "⚪ Futur (non démarré)",
+            statutNoneLabel: "Avant embauche",
+            noEmployees: "Aucun salarié actif dans ce dossier.",
+            noMatch: "Aucun salarié ne correspond à la recherche.",
+            loadError: "Impossible de charger la matrice depuis le serveur.",
+            confirmBatch: "Calculer tous les bulletins du mois",
+            doneChanged: "cellule(s) mise(s) à jour",
+            doneSkipped: "ignorée(s)",
+            invalidRange: "Plage d'années invalide.",
+
+            // Employees view
+            salariesTitle: "Dossier Salariés & Contrats",
+            salariesSub: "Gestion des salariés, salaire de base, primes et coordonnées bancaires (SQLite).",
+            searchEmpPlaceholder: "Rechercher par nom, matricule ou poste...",
+            kpiTotalEmp: "Total Salariés Enregistrés",
+            kpiCdi: "Contrats CDI",
+            kpiCdd: "Autres Contrats (CDD / ANEM)",
+            kpiBaseMass: "Masse Salariale Base",
+            thMatricule: "Matricule",
+            thNom: "Nom & Prénom",
+            thPoste: "Poste & Dép.",
+            thContrat: "Type Contrat",
+            thSalaireBase: "Salaire de Base",
+            thIep: "Prime IEP",
+            thBanque: "Banque / RIP",
+            thStatut: "Statut",
+            thActions: "Actions",
+            addEmpTitle: "Fiche Nouveau Salarié",
+            addEmpSub: "Fiche salarié, contrat de travail, salaire de base et coordonnées bancaires (SQLite).",
+            btnSaveEmp: "Enregistrer le Salarié",
+            ragTitle: "Conseil Juridique & Réglementaire (IA)",
+            ocrTitle: "Gestion des Congés & Arrêts Maladie (OCR)",
+            stcTitle: "Solde Tout Compte (STC)",
+            absencesTitle: "Absences & Congés (Gestion & Validation)",
+            importExportTitle: "Centre Import / Export",
+            settingsTitle: "Paramètres & Configuration"
         },
         ar: {
-            navBpa: 'حالة التقدم (BPA)', navDashboard: 'لوحة القيادة (Dashboard)',
-            navSalaries: 'ملف الأجراء (Salariés)', navEvp: 'دورة الأجور (Cycle)',
-            navBulletins: 'كشوف المرتبات', navIrg: 'جدول الضريبة (IRG G50)',
-            navCnas: 'التصريح الاجتماعي (CNAS)', navVirement: 'التحويلات البنكية (Virement)',
-            navDas: 'التصريح السنوي (DAS)', navAts: 'شهادة العمل (ATS)',
-            backToMatrix: 'العودة لحالة التقدم (BPA)',
-            navRag: 'المستشار القانوني (RAG)',
-            navOcr: 'العطل والشواهد (OCR)', navStc: 'مخالصة نهاية الخدمة (STC)',
-            navSettings: 'الإعدادات (Settings)',
-            topAddTenant: 'مؤسسة جديدة',
-            legendTitle: 'دليل وحالات التقدم', legendAll: 'جميع الحالات',
-            legendCloture: 'معتمد (مغلق)', legendEnCalcul: 'محسوب (بانتظار الاعتماد)',
-            legendEnCours: 'قيد المعالجة (إدخال)', legendACalculer: 'قيد الحساب (متأخر)',
-            legendFutur: 'مستقبلي (لم يبدأ)',
-            painterTitle: 'التعيين السريع', matrixTitle: 'حالة التقدم (BPA)',
-            colName: 'المهام / الأجراء', taskSection: 'المهام العامة للدورة',
-            empSection: 'أجراء المؤسسة (قاعدة البيانات الحقيقية)',
-            tasksBulletins: 'كشوف المرتبات', tasksVirements: 'التحويلات البنكية',
-            tasksDeclarations: 'التصريحات الاجتماعية (CNAS)',
-            btnCalculerMois: 'حساب الشهر', btnExporter: 'تصدير CSV',
-            btnJournalPaie: 'دفتر الأجور (Journal)',
-            searchPlaceholder: 'بحث عن أجير أو رقم وظيفي...',
-            rangeFrom: 'من', rangeTo: 'إلى',
-            presetCurrentYear: '2026 (سنة)',
-            preset2Years: '2025 - 2026 (سنتان)',
-            preset3Years: '2024 - 2026 (3 سنوات)',
+            navBpa: "حالة التقدم (BPA)",
+            navSalaries: "ملف الأجراء",
+            navAddSalarie: "+ إضافة ملف أجير",
+            navRag: "المستشار القانوني (RAG)",
+            navOcr: "العطل والشواهد (OCR)",
+            navAbsences: "الغيابات والاعتمادات",
+            navStc: "مخالصة نهاية الخدمة (STC)",
+            navImportExport: "مركز الاستيراد والتصدير",
+            navSettings: "الإعدادات",
+            topAddTenant: "+ مؤسسة جديدة",
+            userRoleExpert: "خبير الأجور",
+            backToMatrix: "العودة لحالة التقدم (BPA)",
+            matrixTitle: "حالة التقدم (BPA)",
+            legendTitle: "دليل وحالات التقدم :",
+            legendAll: "جميع الحالات",
+            legendCloture: "معتمد (مغلق)",
+            legendEnCalcul: "محسوب (بانتظار الاعتماد)",
+            legendEnCours: "قيد المعالجة (إدخال)",
+            legendACalculer: "قيد الحساب (متأخر)",
+            legendFutur: "مستقبلي (لم يبدأ)",
+            painterTitle: "التعيين السريع",
+            colName: "المهام / الأجراء",
+            taskSection: "المهام العامة للدورة",
+            empSection: "أجراء المؤسسة (قاعدة البيانات الحقيقية)",
+            tasksBulletins: "كشوف المرتبات",
+            tasksVirements: "التحويلات البنكية",
+            tasksDeclarations: "التصريحات الاجتماعية (CNAS)",
+            btnCalculerMois: "حساب الشهر",
+            btnExporter: "تصدير CSV",
+            btnJournalPaie: "دفتر الأجور (Journal)",
+            searchPlaceholder: "بحث عن أجير أو رقم وظيفي...",
+            rangeFrom: "من",
+            rangeTo: "إلى",
+            presetCurrentYear: "2026",
+            preset2Years: "2025 - 2026",
+            preset3Years: "2024 - 2026",
             exerciceTitle: (y) => `السنة المالية ${y} — السنة كاملة (12 شهراً)`,
-            exerciceBadge: '12 شهراً (01 — 12)',
+            exerciceBadge: "12 شهراً (01 — 12)",
             taskSectionYear: (y) => `المهام العامة للدورة (${y})`,
             empSectionYear: (y) => `أجراء المؤسسة — قاعدة بيانات حقيقية (${y})`,
-            statutClotureLabel: '🟢 معتمد ومغلق', statutEnCalculLabel: '🟠 محسوب (بانتظار الاعتماد)',
-            statutEnCoursLabel: '🔵 قيد المعالجة', statutACalculerLabel: '🔴 قيد الحساب (متأخر)',
-            statutFuturLabel: '⚪ مستقبلي (لم يبدأ)', statutNoneLabel: 'قبل التوظيف',
-            noEmployees: 'لا يوجد أجراء نشطون في هذا الملف.',
-            noMatch: 'لا يوجد أجير مطابق للبحث.',
-            loadError: 'تعذر تحميل المصفوفة من الخادم.',
-            confirmBatch: 'حساب جميع كشوف شهر',
-            doneChanged: 'خانة تم تحديثها', doneSkipped: 'تم تجاوزها',
-            invalidRange: 'نطاق السنوات غير صالح.'
+            statutClotureLabel: "🟢 معتمد ومغلق",
+            statutEnCalculLabel: "🟠 محسوب (بانتظار الاعتماد)",
+            statutEnCoursLabel: "🔵 قيد المعالجة",
+            statutACalculerLabel: "🔴 قيد الحساب (متأخر)",
+            statutFuturLabel: "⚪ مستقبلي (لم يبدأ)",
+            statutNoneLabel: "قبل التوظيف",
+            noEmployees: "لا يوجد أجراء نشطون في هذا الملف.",
+            noMatch: "لا يوجد أجير مطابق للبحث.",
+            loadError: "تعذر تحميل المصفوفة من الخادم.",
+            confirmBatch: "حساب جميع كشوف شهر",
+            doneChanged: "خانة تم تحديثها",
+            doneSkipped: "تم تجاوزها",
+            invalidRange: "نطاق السنوات غير صالح.",
+
+            // Employees view
+            salariesTitle: "ملف الأجراء وعقود العمل",
+            salariesSub: "إدارة وتسيير ملفات الأجراء، الأجر القاعدي، المنح، والحسابات البنكية (SQLite).",
+            searchEmpPlaceholder: "البحث بالاسم، المعرف، أو المنصب...",
+            kpiTotalEmp: "إجمالي الأجراء المسجلين",
+            kpiCdi: "عقود غير محددة المدة (CDI)",
+            kpiCdd: "عقود أخرى (CDD / ANEM)",
+            kpiBaseMass: "كتلة الأجر القاعدي الشهرية",
+            thMatricule: "المعرف",
+            thNom: "الاسم واللقب",
+            thPoste: "الوظيفة والقسم",
+            thContrat: "نوع العقد",
+            thSalaireBase: "الراتب الأساسي",
+            thIep: "منحة الأقدمية IEP",
+            thBanque: "الحساب البنكي / RIP",
+            thStatut: "الحالة",
+            thActions: "إجراءات",
+            addEmpTitle: "تسجيل ملف أجير جديد",
+            addEmpSub: "بطاقة تعريف الأجير، شروط العقد، الأجر القاعدي والتوطين البنكي (SQLite).",
+            btnSaveEmp: "حفظ وتثبيت الأجير",
+            ragTitle: "المستشار القانوني والرقابي (الذكاء الاصطناعي التشريعي)",
+            ocrTitle: "إدارة الشواهد الطبية والعطل المرضية (OCR)",
+            stcTitle: "مخالصة وتصفية نهاية الخدمة (STC)",
+            absencesTitle: "تسجيل واعتماد الغيابات والإجازات (Absences & Congés)",
+            importExportTitle: "مركز الاستيراد والتصدير والمصادقة (Centre Import / Export)",
+            settingsTitle: "الإعدادات العامة والتكوين (Paramètres)"
         }
     };
 
@@ -147,13 +229,33 @@
         document.documentElement.dir = (S.locale === 'ar') ? 'rtl' : 'ltr';
         document.querySelectorAll('.locale-btn').forEach((b) =>
             b.classList.toggle('active', b.getAttribute('data-locale') === S.locale));
+        document.querySelectorAll('.lang-choice-btn').forEach((b) =>
+            b.classList.toggle('active', b.getAttribute('data-lang-val') === S.locale));
+        const sel = document.getElementById('payslipLangSelect');
+        if (sel) sel.value = (S.locale === 'fr') ? 'fr' : 'ar';
     }
 
     function translateStatic() {
         document.querySelectorAll('[data-i18n]').forEach((el) => {
             const k = el.getAttribute('data-i18n');
             const v = t(k);
-            if (typeof v === 'string' && v !== k) el.textContent = v;
+            if (typeof v === 'string') {
+                if (el.children.length === 0) {
+                    el.textContent = v;
+                } else {
+                    el.innerText = v;
+                }
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+            const k = el.getAttribute('data-i18n-placeholder');
+            const v = t(k);
+            if (typeof v === 'string') el.placeholder = v;
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+            const k = el.getAttribute('data-i18n-title');
+            const v = t(k);
+            if (typeof v === 'string') el.title = v;
         });
         const search = document.getElementById('silaeSearchEmpInput');
         if (search) search.placeholder = t('searchPlaceholder');
@@ -166,6 +268,12 @@
         applyLocaleDirection();
         translateStatic();
         renderAll();
+        if (typeof window.renderEmployeesTable === 'function') {
+            window.renderEmployeesTable();
+        }
+        if (typeof window.renderActivePayslip === 'function') {
+            window.renderActivePayslip();
+        }
     }
 
     // ------------------------------ Backend access ---------------------------

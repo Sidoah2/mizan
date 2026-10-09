@@ -2219,101 +2219,96 @@
             <!-- Row 1: Top Bar with Brand, Database Tenant Selector, Dual Locale & User Session -->
             <div class="silae-window-bar">
                 <div class="silae-brand-section">
-                    <div class="silae-logo-text" style="display: flex; align-items: center; gap: 10px;">
+                    <div class="silae-logo-text">
                         <img src="5913240995690647771.jpg" alt="SYNCRA" class="syncra-appbar-logo"
                             onerror="this.src='syncra_logo.jpg'">
-                        <span><span class="brand-accent" style="color: #0284c7; font-weight: 800;">SYNCRA</span>
-                            PAIE</span>
+                        <span><span class="brand-accent">SYNCRA</span> PAIE</span>
                     </div>
-                    <div class="silae-traffic-lights" title="Statut du serveur de paie: Opérationnel">
-                        <span class="t-dot t-green"></span>
-                        <span class="t-dot t-red"></span>
-                        <span class="t-dot t-green"></span>
-                    </div>
-                    <!-- Real Database Multi-Tenant Selector & Add Company -->
-                    <div class="silae-top-tenant-selector" title="Changer d'entreprise active dans la base de données">
-                        <i class="fa-solid fa-building text-primary"></i>
+
+                    <!-- Modern Database Multi-Tenant Selector & Add Company -->
+                    <div class="silae-top-tenant-selector" title="Changer d'entreprise active / تبديل المؤسسة">
+                        <i class="fa-solid fa-building-user text-primary" style="font-size: 0.85rem;"></i>
                         <select id="silaeTopTenantSelect" onchange="window.SilaeEngine.switchTenant(this.value)">
                             <!-- Populated dynamically via SQLite API -->
                         </select>
                         <button type="button" class="btn-top-add-tenant" onclick="switchSaaSTab('view-add-company')"
-                            title="إضافة مؤسسة جديدة (Nouvelle Entreprise)">
-                            <i class="fa-solid fa-plus"></i> <span data-i18n="topAddTenant">مؤسسة جديدة</span>
+                            title="Nouvelle Entreprise / إضافة مؤسسة جديدة">
+                            <i class="fa-solid fa-plus"></i> <span data-i18n="topAddTenant">+ Nouvelle Entreprise</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Window Right Controls: Dual Locale & User Session -->
+                <!-- Window Right Controls: Segmented Dual Locale & User Session -->
                 <div class="silae-window-controls">
-                    <!-- Dual Locale Switcher (FR / AR) -->
-                    <div class="silae-locale-switcher" title="Changer la langue d'affichage (Français / العربية)">
+                    <!-- Segmented Dual Locale Switcher (FR / AR) -->
+                    <div class="silae-locale-switcher">
                         <button type="button" class="locale-btn" data-locale="fr"
-                            onclick="window.SilaeEngine.setLocale('fr')">
-                            🇫🇷 FR
+                            onclick="window.setLanguage('fr')">
+                            FR
                         </button>
                         <button type="button" class="locale-btn" data-locale="ar"
-                            onclick="window.SilaeEngine.setLocale('ar')">
-                            🇩🇿 العربية
+                            onclick="window.setLanguage('ar')">
+                            عربي
                         </button>
                     </div>
 
                     <!-- User Session Badge & Logout -->
                     <div class="silae-user-badge">
-                        <i class="fa-solid fa-user-shield text-accent"></i>
-                        <span id="silaeUserDisplayName">Expert Paie</span>
+                        <div class="user-avatar-dot">HR</div>
+                        <span id="silaeUserDisplayName" data-i18n="userRoleExpert">Expert Paie</span>
                         <button type="button" class="btn-silae-logout" onclick="handleUserLogout()" title="Déconnexion">
-                            <i class="fa-solid fa-power-off"></i>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Row 2: THE APPAR NAVIGATION (Clean SYNCRA ERP App Bar) -->
+            <!-- Row 2: THE MODERN APPAR NAVIGATION (PILL-TABS) -->
             <nav class="silae-appbar-nav" id="silaeAppbarNav">
                 <button type="button" class="appbar-nav-item active" data-tab="view-silae-matrix"
                     onclick="switchSaaSTab('view-silae-matrix')">
-                    <i class="fa-solid fa-table-cells text-primary"></i>
-                    <span data-i18n="navBpa">حالة التقدم (BPA)</span>
+                    <i class="fa-solid fa-table-cells" style="color: #38bdf8;"></i>
+                    <span data-i18n="navBpa">État d'avancement (BPA)</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-employees"
                     onclick="switchSaaSTab('view-employees')">
-                    <i class="fa-solid fa-address-card text-primary"></i>
-                    <span data-i18n="navSalaries">دليل الأجراء (Salariés)</span>
+                    <i class="fa-solid fa-users-gear" style="color: #818cf8;"></i>
+                    <span data-i18n="navSalaries">Salariés</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-add-employee"
                     onclick="switchSaaSTab('view-add-employee')">
-                    <i class="fa-solid fa-user-plus text-success"></i>
-                    <span data-i18n="navAddSalarie">+ إضافة ملف أجير (Nouveau Salarié)</span>
+                    <i class="fa-solid fa-user-plus" style="color: #34d399;"></i>
+                    <span data-i18n="navAddSalarie">+ Nouveau Salarié</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-rag-assistant"
                     onclick="switchSaaSTab('view-rag-assistant')">
-                    <i class="fa-solid fa-scale-balanced text-primary"></i>
-                    <span data-i18n="navRag">المستشار القانوني (RAG)</span>
+                    <i class="fa-solid fa-scale-balanced" style="color: #a78bfa;"></i>
+                    <span data-i18n="navRag">Conseil Juridique (RAG)</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-ocr-leaves"
                     onclick="switchSaaSTab('view-ocr-leaves')">
-                    <i class="fa-solid fa-file-medical text-accent"></i>
-                    <span data-i18n="navOcr">العطل والشواهد (OCR)</span>
+                    <i class="fa-solid fa-file-medical" style="color: #f472b6;"></i>
+                    <span data-i18n="navOcr">Congés & Maladie (OCR)</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-absences"
                     onclick="switchSaaSTab('view-absences')">
-                    <i class="fa-solid fa-calendar-check text-warning"></i>
-                    <span>الغيابات والاعتمادات <span id="navAbsencesPendingBadge" class="badge badge-warning"
+                    <i class="fa-solid fa-calendar-check" style="color: #fbbf24;"></i>
+                    <span><span data-i18n="navAbsences">Absences & Congés</span> <span id="navAbsencesPendingBadge" class="badge badge-warning"
                             style="display: none; padding: 2px 6px; font-size: 0.72rem; margin-inline-start: 4px;">0</span></span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-stc" onclick="switchSaaSTab('view-stc')">
-                    <i class="fa-solid fa-handshake-slash text-warning"></i>
-                    <span data-i18n="navStc">مساعد الخروج (STC)</span>
+                    <i class="fa-solid fa-handshake-slash" style="color: #f87171;"></i>
+                    <span data-i18n="navStc">Solde Tout Compte (STC)</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-import-export"
                     onclick="switchSaaSTab('view-import-export')">
-                    <i class="fa-solid fa-file-excel text-success"></i>
-                    <span>مركز الاستيراد والتصدير</span>
+                    <i class="fa-solid fa-file-excel" style="color: #2dd4bf;"></i>
+                    <span data-i18n="navImportExport">Centre Import / Export</span>
                 </button>
                 <button type="button" class="appbar-nav-item" data-tab="view-settings"
                     onclick="switchSaaSTab('view-settings')">
-                    <i class="fa-solid fa-gear"></i>
-                    <span data-i18n="navSettings">الإعدادات (Settings)</span>
+                    <i class="fa-solid fa-gear" style="color: #94a3b8;"></i>
+                    <span data-i18n="navSettings">Paramètres</span>
                 </button>
             </nav>
         </header>
@@ -2609,26 +2604,26 @@
                             <h3
                                 style="font-size: 1.35rem; font-weight: 800; display: flex; align-items: center; gap: 10px;">
                                 <i class="fa-solid fa-address-card text-success"></i>
-                                <span>ملف الأجراء وعقود العمل (Dossier Salariés)</span>
+                                <span data-i18n="salariesTitle">Dossier Salariés & Contrats</span>
                             </h3>
-                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
-                                إدارة وتسيير ملفات الأجراء، الأجر القاعدي، المنح، والحسابات البنكية (قاعدة بيانات SYNCRA
-                                SQLite).
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;" data-i18n="salariesSub">
+                                Gestion des salariés, salaire de base, primes et coordonnées bancaires (SQLite).
                             </p>
                         </div>
                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                             <input type="text" id="employeeSearchInput" class="form-control"
-                                placeholder="البحث بالاسم، المعرف، أو المنصب..."
+                                data-i18n-placeholder="searchEmpPlaceholder"
+                                placeholder="Rechercher par nom, matricule ou poste..."
                                 style="padding: 7px 14px; font-size: 0.84rem; width: 250px;"
                                 oninput="renderEmployeesTable(this.value)">
                             <button type="button" class="btn btn-primary" onclick="openAddEmployeeModal()"
                                 style="display: inline-flex; align-items: center; gap: 8px;">
                                 <i class="fa-solid fa-user-plus"></i>
-                                <span>+ إضافة ملف أجير جديد (Nouveau Salarié)</span>
+                                <span data-i18n="navAddSalarie">+ Nouveau Salarié</span>
                             </button>
                             <button type="button" class="btn btn-secondary" onclick="exportEmployeesCsv()"
-                                title="تصدير جدول الأجراء">
-                                <i class="fa-solid fa-file-excel text-success"></i> تصدير CSV
+                                title="Exporter CSV">
+                                <i class="fa-solid fa-file-excel text-success"></i> <span data-i18n="btnExporter">Exporter CSV</span>
                             </button>
                         </div>
                     </div>
@@ -2638,31 +2633,27 @@
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #f1f5f9;">
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #0284c7;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">إجمالي الأجراء
-                                المسجلين</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiTotalEmp">Total Salariés Enregistrés</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-top: 2px;"
                                 id="dossierCountTotal">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #16a34a;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">عقود غير محددة
-                                المدة (CDI)</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiCdi">Contrats CDI</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #16a34a; margin-top: 2px;"
                                 id="dossierCountCdi">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">عقود أخرى (CDD
-                                / ANEM)</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiCdd">Autres Contrats (CDD / ANEM)</span>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #d97706; margin-top: 2px;"
                                 id="dossierCountCdd">0</div>
                         </div>
                         <div
                             style="background: var(--bg-surface-elevated, #f8fafc); padding: 14px 18px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">كتلة الأجر
-                                القاعدي الشهرية</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="kpiBaseMass">Masse Salariale Base</span>
                             <div style="font-size: 1.25rem; font-weight: 900; color: #6d28d9; margin-top: 2px;"
-                                id="dossierTotalBase">0 دج</div>
+                                id="dossierTotalBase">0 DA</div>
                         </div>
                     </div>
                 </div>
@@ -2673,15 +2664,15 @@
                         <table id="employeesTable">
                             <thead>
                                 <tr>
-                                    <th>المعرف</th>
-                                    <th>الاسم واللقب</th>
-                                    <th>الوظيفة والقسم</th>
-                                    <th>نوع العقد</th>
-                                    <th>الراتب الأساسي</th>
-                                    <th>منحة الأقدمية IEP</th>
-                                    <th>الحساب البنكي / RIP</th>
-                                    <th>الحالة</th>
-                                    <th>إجراءات</th>
+                                    <th><span data-i18n="thMatricule">Matricule</span></th>
+                                    <th><span data-i18n="thNom">Nom & Prénom</span></th>
+                                    <th><span data-i18n="thPoste">Poste & Dép.</span></th>
+                                    <th><span data-i18n="thContrat">Type Contrat</span></th>
+                                    <th><span data-i18n="thSalaireBase">Salaire de Base</span></th>
+                                    <th><span data-i18n="thIep">Prime IEP</span></th>
+                                    <th><span data-i18n="thBanque">Banque / RIP</span></th>
+                                    <th><span data-i18n="thStatut">Statut</span></th>
+                                    <th><span data-i18n="thActions">Actions</span></th>
                                 </tr>
                             </thead>
                             <tbody id="employeesTableBody">
@@ -2702,11 +2693,10 @@
                             <h3
                                 style="font-size: 1.35rem; font-weight: 800; display: flex; align-items: center; gap: 10px;">
                                 <i class="fa-solid fa-user-plus text-success"></i>
-                                <span>تسجيل ملف أجير جديد (Fiche Nouveau Salarié)</span>
+                                <span data-i18n="addEmpTitle">Fiche Nouveau Salarié</span>
                             </h3>
-                            <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 3px;">
-                                بطاقة تعريف الأجير، شروط العقد، الأجر القاعدي والمنح والتوطين البنكي وفق التشريع
-                                الجزائري (قاعدة بيانات المؤسسة الحالية).
+                            <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 3px;" data-i18n="addEmpSub">
+                                Fiche salarié, contrat de travail, salaire de base et coordonnées bancaires (SQLite).
                             </p>
                         </div>
                     </div>
@@ -2714,7 +2704,7 @@
                     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                         <button type="submit" form="formScreenAddEmployee" class="btn btn-primary"
                             id="btnSaveScreenEmployee">
-                            <i class="fa-solid fa-floppy-disk"></i> حفظ وتثبيت الأجير
+                            <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="btnSaveEmp">Enregistrer le Salarié</span>
                         </button>
                     </div>
                 </div>
@@ -4309,8 +4299,7 @@
                         <div>
                             <div style="display: flex; align-items: center; gap: 8px;">
                                 <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0;">
-                                    <i class="fa-solid fa-scale-balanced text-primary"></i> المستشار القانوني
-                                    والرقابي (الذكاء الاصطناعي التشريعي)
+                                    <i class="fa-solid fa-scale-balanced text-primary"></i> <span data-i18n="ragTitle">Conseil Juridique & Réglementaire (IA)</span>
                                 </h3>
                                 <span class="rag-status-pill">
                                     <i class="fa-solid fa-scale-balanced"></i> النظام التشريعي المعتمد N1
@@ -4409,8 +4398,7 @@
                     <div class="table-card-header">
                         <div>
                             <h3 style="font-size: 1.25rem; font-weight: 800;">
-                                <i class="fa-solid fa-file-medical text-primary"></i> إدارة الشواهد الطبية والعطل
-                                المرضية
+                                <i class="fa-solid fa-file-medical text-primary"></i> <span data-i18n="ocrTitle">Gestion des Congés & Arrêts Maladie (OCR)</span>
                             </h3>
                             <p style="font-size: 0.85rem; color: var(--text-muted);">
                                 تسجيل وتدقيق شهادات التوقف عن العمل (Arrêt de travail) وبطاقات الضمان الاجتماعي مع
@@ -4632,8 +4620,7 @@
                     <div class="table-card-header">
                         <div>
                             <h3 style="font-size: 1.25rem; font-weight: 800;">
-                                <i class="fa-solid fa-handshake-slash text-warning"></i> مخالصة وتصفية نهاية الخدمة
-                                (Solde de Tout Compte - STC)
+                                <i class="fa-solid fa-handshake-slash text-warning"></i> <span data-i18n="stcTitle">Solde Tout Compte (STC)</span>
                             </h3>
                             <p style="font-size: 0.85rem; color: var(--text-muted);">
                                 الحساب القانوني القطعي لتسوية مستحقات الأجير المغادر وفق القانون 90-11 مع إصدار وصل
@@ -4802,7 +4789,7 @@
             <section id="view-settings" class="saas-view-section">
                 <div style="margin-bottom: 24px;">
                     <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">
-                        <i class="fa-solid fa-gear text-primary"></i> الإعدادات العامة والتكوين (Paramètres)
+                        <i class="fa-solid fa-gear text-primary"></i> <span data-i18n="settingsTitle">Paramètres & Configuration</span>
                     </h2>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
                         تخصيص لغة النظام، مظهر الواجهة، هوية المؤسسة والمستأجر، وإدارة الجلسة وصلاحيات المستخدمين.
@@ -5058,8 +5045,7 @@
                 <div class="saas-banner">
                     <div>
                         <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">
-                            <i class="fa-solid fa-calendar-check text-warning"></i> تسجيل واعتماد الغيابات والإجازات
-                            (Absences & Congés)
+                            <i class="fa-solid fa-calendar-check text-warning"></i> <span data-i18n="absencesTitle">Absences & Congés</span>
                         </h3>
                         <p style="font-size: 0.88rem; color: var(--text-muted);">
                             تسجيل نشاط الشهر وغيابات الموظفين الفردية والجماعية مع مسار اعتماد المديرين N+1 وحساب الأثر
@@ -5163,8 +5149,7 @@
                 <div class="saas-banner">
                     <div>
                         <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">
-                            <i class="fa-solid fa-file-excel text-success"></i> مركز الاستيراد والتصدير والمصادقة
-                            (Centre Import / Export)
+                            <i class="fa-solid fa-file-excel text-success"></i> <span data-i18n="importExportTitle">Centre Import / Export</span>
                         </h3>
                         <p style="font-size: 0.88rem; color: var(--text-muted);">
                             محرك الاستيراد السحابي المتكامل للبيانات الجماعية (الموظفون، المتغيرات الشهرية EVP،
@@ -6141,6 +6126,13 @@
             if (!tbody) return;
             tbody.innerHTML = '';
 
+            const isFr = (document.documentElement.lang === 'fr');
+            const currency = isFr ? 'DA' : 'دج';
+            const statusLabel = isFr ? 'Actif' : 'نشط';
+            const btnBulletinText = isFr ? 'Bulletin' : 'الكشف';
+            const btnViewTitle = isFr ? 'Voir le bulletin' : 'عرض كشف الراتب';
+            const btnDeleteTitle = isFr ? 'Supprimer le salarié' : 'حذف الأجير';
+
             // Update Dossier KPI Metric Counters
             const totalCountEl = document.getElementById('dossierCountTotal');
             const cdiCountEl = document.getElementById('dossierCountCdi');
@@ -6151,7 +6143,7 @@
             if (cddCountEl) cddCountEl.innerText = employees.filter(e => !(e.contract || '').toUpperCase().includes('CDI')).length;
             if (totalBaseEl) {
                 const totalBase = employees.reduce((sum, e) => sum + (parseFloat(e.base) || 0), 0);
-                totalBaseEl.innerText = `${totalBase.toLocaleString()} دج`;
+                totalBaseEl.innerText = `${totalBase.toLocaleString()} ${currency}`;
             }
 
             const q = (filterQuery !== '' ? filterQuery : (document.getElementById('employeeSearchInput')?.value || '')).trim().toLowerCase();
@@ -6169,19 +6161,27 @@
             });
 
             if (filtered.length === 0) {
+                const emptyTitle = isFr
+                    ? (q ? 'Aucun résultat ne correspond à la recherche : "' + q + '"' : 'Aucun salarié enregistré actuellement dans ce dossier')
+                    : (q ? 'لا توجد نتائج تطابق معيار البحث: "' + q + '"' : 'لا يوجد أي موظف مسجل حالياً في هذا الملف');
+                const emptySub = isFr
+                    ? (q ? 'Essayez de chercher par nom, matricule ou compte RIP.' : 'Dossier prêt pour la saisie. Cliquez sur le bouton ci-dessous pour ajouter le premier salarié.')
+                    : (q ? 'حاول البحث باسم موظف، المعرف الوظيفي أو رقم الحساب RIP.' : 'الملف في الحالة الابتدائية النظيفة. اضغط على الزر أدناه لإدخال بيانات أول ملف أجير.');
+                const btnAddText = isFr ? '+ Nouveau Salarié' : '+ إضافة ملف أجير جديد';
+
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="9" style="text-align: center; padding: 45px 20px; color: var(--text-muted);">
                             <i class="fa-solid fa-users-slash" style="font-size: 2.4rem; margin-bottom: 12px; display: block; opacity: 0.5;"></i>
                             <strong style="font-size: 1.1rem; color: var(--text-primary); display: block; margin-bottom: 6px;">
-                                ${q ? 'لا توجد نتائج تطابق معيار البحث: "' + q + '"' : 'لا يوجد أي موظف مسجل حالياً في هذا المستأجر'}
+                                ${emptyTitle}
                             </strong>
                             <p style="font-size: 0.85rem; margin-bottom: 16px;">
-                                ${q ? 'حاول البحث باسم موظف، المعرف الوظيفي أو رقم الحساب RIP.' : 'المستأجر في الحالة الابتدائية النظيفة. اضغط على الزر أدناه لإدخال بيانات أول ملف أجير.'}
+                                ${emptySub}
                             </p>
                             <div style="display: flex; justify-content: center; gap: 10px;">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="openAddEmployeeModal()">
-                                    <i class="fa-solid fa-user-plus"></i> + إضافة ملف أجير جديد (Nouveau Salarié)
+                                    <i class="fa-solid fa-user-plus"></i> ${btnAddText}
                                 </button>
                             </div>
                         </td>
@@ -6197,8 +6197,8 @@
                     <td><strong>${emp.name}</strong></td>
                     <td>${emp.job} <span style="font-size: 0.75rem; color: var(--text-muted);">(${emp.dept})</span></td>
                     <td><span class="badge badge-info">${emp.contract}</span></td>
-                    <td>${(parseFloat(emp.base) || 0).toLocaleString()} دج</td>
-                    <td>${(parseFloat(emp.seniority) || 0).toLocaleString()} دج</td>
+                    <td>${(parseFloat(emp.base) || 0).toLocaleString()} ${currency}</td>
+                    <td>${(parseFloat(emp.seniority) || 0).toLocaleString()} ${currency}</td>
                     <td>
                         <span style="font-size: 0.78rem; font-family: monospace; color: #334155;">
                             ${emp.bank || 'CCP'}
@@ -6206,13 +6206,13 @@
                             <small style="color: #64748b;">${emp.rib || '-'}</small>
                         </span>
                     </td>
-                    <td><span class="badge badge-success">${emp.status || 'نشط'}</span></td>
+                    <td><span class="badge badge-success">${emp.status || statusLabel}</span></td>
                     <td>
                         <div style="display: flex; gap: 6px;">
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="viewEmployeePayslip('${emp.id}')" title="عرض كشف الراتب">
-                                <i class="fa-solid fa-file-invoice text-primary"></i> الكشف
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="viewEmployeePayslip('${emp.id}')" title="${btnViewTitle}">
+                                <i class="fa-solid fa-file-invoice text-primary"></i> ${btnBulletinText}
                             </button>
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="deleteEmployee('${emp.id}')" title="حذف الأجير" style="color: var(--danger);">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="deleteEmployee('${emp.id}')" title="${btnDeleteTitle}" style="color: var(--danger);">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>
@@ -7217,9 +7217,20 @@
             document.querySelectorAll('.lang-choice-btn').forEach(b => {
                 b.classList.toggle('active', b.getAttribute('data-lang-val') === lang);
             });
+            document.querySelectorAll('.locale-btn').forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-locale') === lang);
+            });
             const sel = document.getElementById('payslipLangSelect');
             if (sel) sel.value = (lang === 'fr') ? 'fr' : 'ar';
-            renderActivePayslip();
+            if (window.SilaeEngine && typeof window.SilaeEngine.setLocale === 'function') {
+                window.SilaeEngine.setLocale(lang);
+            }
+            if (typeof renderEmployeesTable === 'function') {
+                renderEmployeesTable();
+            }
+            if (typeof renderActivePayslip === 'function') {
+                renderActivePayslip();
+            }
         }
 
         // =========================================================================
